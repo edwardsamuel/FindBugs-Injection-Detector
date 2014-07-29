@@ -1,10 +1,19 @@
 <component name="libraryTable">
   <library name="findbugs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/" />
       <root url="jar://$PROJECT_DIR$/../findbugs/lib/bcel.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../findbugs/lib/annotations.jar!/" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/gui" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/java" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/junit" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/tools" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/antTask" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/obsolete" />
+      <root url="file://$PROJECT_DIR$/../findbugs/src/infonodeJava" />
+    </SOURCES>
   </library>
 </component>

@@ -43,6 +43,7 @@
 		<delete>
 			<fileset dir="bin" includes="**" />
 			<fileset file="injection-detector.jar"/>
+            <fileset file="../findbugs/plugin/injection-detector.jar"/>
 		</delete>
 	</target>
 

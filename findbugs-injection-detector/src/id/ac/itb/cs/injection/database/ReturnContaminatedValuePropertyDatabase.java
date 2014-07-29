@@ -42,7 +42,9 @@ import java.io.Writer;
 public class ReturnContaminatedValuePropertyDatabase extends PropertyDatabase<FieldOrMethodDescriptor, ReturnContaminatedValueProperty>  {
 
     private static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
-    
+
+    public static final String ANNOTATION_NAME = "id/ac/itb/cs/annotation/ReturnContaminated";
+
     public static final String FILE_NAME = "db_source.txt";
     
     public ReturnContaminatedValuePropertyDatabase() {
@@ -54,6 +56,10 @@ public class ReturnContaminatedValuePropertyDatabase extends PropertyDatabase<Fi
                 System.out.println("ReturnContaminatedValuePropertyDatabase file " + FILE_NAME + " not found");
             }
         } catch (PropertyDatabaseFormatException e) {
+            if (DEBUG) {
+                System.out.println("ReturnContaminatedValuePropertyDatabase file format error");
+            }
+        } catch (Exception e){
             if (DEBUG) {
                 System.out.println("ReturnContaminatedValuePropertyDatabase file format error");
             }

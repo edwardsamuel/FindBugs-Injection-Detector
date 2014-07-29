@@ -50,12 +50,10 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
         this.visitor = new InjectionFrameVisitorAnalysis(javaClassAndMethod, methodGen.getConstantPool());
     }
 
-    @Override
     public InjectionFrame createFact() {
         return new InjectionFrame(methodGen.getMaxLocals());
     }
 
-    @Override
     public void initEntryFact(InjectionFrame result) throws DataflowAnalysisException {
         result.setValid();
         result.clearStack();
@@ -73,12 +71,11 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
 
         int numSlots = result.getNumSlots();
         while (i < numSlots) {
-            result.setValue(i, InjectionValue.UNCONTAMINATED_VALUE);
+            result.setValue(i, new InjectionValue(InjectionValue.UNCONTAMINATED));
             i++;
         }
     }
 
-    @Override
     public void meetInto(InjectionFrame fact, Edge edge, InjectionFrame result) throws DataflowAnalysisException {
         if (fact.isValid()) {
             InjectionFrame tempFrame = null;
@@ -86,7 +83,7 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
             if (edge.isExceptionEdge()) {
                 tempFrame = modifyFrame(fact, tempFrame);
                 tempFrame.clearStack();
-                tempFrame.pushValue(InjectionValue.UNCONTAMINATED_VALUE);
+                tempFrame.pushValue(new InjectionValue(InjectionValue.UNCONTAMINATED));
             } else {
                 final int edgeType = edge.getType();
                 if (edgeType == Edge.IFCMP_EDGE || edgeType == Edge.FALL_THROUGH_EDGE) {

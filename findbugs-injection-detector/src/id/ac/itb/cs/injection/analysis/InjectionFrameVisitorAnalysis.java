@@ -19,45 +19,24 @@
 
 package id.ac.itb.cs.injection.analysis;
 
-import id.ac.itb.cs.injection.database.CleanerProperty;
-import id.ac.itb.cs.injection.database.CleanerPropertyDatabase;
-import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
-import id.ac.itb.cs.injection.database.ReturnContaminatedValuePropertyDatabase;
-import id.ac.itb.cs.injection.util.Util;
-
-import java.util.Set;
-
-import org.apache.bcel.Constants;
-import org.apache.bcel.generic.AALOAD;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.FieldInstruction;
-import org.apache.bcel.generic.GETFIELD;
-import org.apache.bcel.generic.GETSTATIC;
-import org.apache.bcel.generic.INVOKEINTERFACE;
-import org.apache.bcel.generic.INVOKESPECIAL;
-import org.apache.bcel.generic.INVOKESTATIC;
-import org.apache.bcel.generic.INVOKEVIRTUAL;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.LDC;
-import org.apache.bcel.generic.LDC2_W;
-import org.apache.bcel.generic.LoadInstruction;
-import org.apache.bcel.generic.PUTFIELD;
-import org.apache.bcel.generic.PUTSTATIC;
-
 import edu.umd.cs.findbugs.SourceLineAnnotation;
 import edu.umd.cs.findbugs.SystemProperties;
-import edu.umd.cs.findbugs.ba.AbstractFrameModelingVisitor;
-import edu.umd.cs.findbugs.ba.DataflowAnalysisException;
-import edu.umd.cs.findbugs.ba.InvalidBytecodeException;
-import edu.umd.cs.findbugs.ba.JavaClassAndMethod;
-import edu.umd.cs.findbugs.ba.XFactory;
-import edu.umd.cs.findbugs.ba.XMethod;
+import edu.umd.cs.findbugs.ba.*;
 import edu.umd.cs.findbugs.ba.type.TypeDataflow;
 import edu.umd.cs.findbugs.ba.type.TypeFrame;
 import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
 import edu.umd.cs.findbugs.classfile.Global;
 import edu.umd.cs.findbugs.classfile.IAnalysisCache;
 import edu.umd.cs.findbugs.classfile.MethodDescriptor;
+import id.ac.itb.cs.injection.database.CleanerProperty;
+import id.ac.itb.cs.injection.database.CleanerPropertyDatabase;
+import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
+import id.ac.itb.cs.injection.database.ReturnContaminatedValuePropertyDatabase;
+import id.ac.itb.cs.injection.util.Util;
+import org.apache.bcel.Constants;
+import org.apache.bcel.generic.*;
+
+import java.util.Set;
 
 /**
  * @author Edward Samuel
@@ -87,7 +66,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
 
     @Override
     public InjectionValue getDefaultValue() {
-        return InjectionValue.UNCONTAMINATED_VALUE;
+        return new InjectionValue(InjectionValue.UNCONTAMINATED);
     }
     
     /***
@@ -138,18 +117,18 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     @Override
     public void visitLDC(LDC obj) {
         Object value = obj.getValue(getCPG());
-        InjectionValue c = new InjectionValue(InjectionValue.UNCONTAMINATED);
-        c.value = value.toString();
-        getFrame().pushValue(c);
+        InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+        pushValue.value = value.toString();
+        getFrame().pushValue(pushValue);
     }
 
     @Override
     public void visitLDC2_W(LDC2_W obj) {
         Object value = obj.getValue(getCPG());
-        InjectionValue iv = new InjectionValue(InjectionValue.UNCONTAMINATED);
-        iv.value = value.toString();
-        getFrame().pushValue(iv);
-        getFrame().pushValue(iv);
+        InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+        pushValue.value = value.toString();
+        getFrame().pushValue(pushValue);
+        getFrame().pushValue(pushValue);
     }
 
     @Override
@@ -250,7 +229,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
         if (!calledMethod.isStatic()) {
             
             // Check for InjectionValue.POSITIVE_VALIDATOR_RESULT_TYPE
-            InjectionValue referenceValue = new InjectionValue(InjectionValue.UNCONTAMINATED_VALUE);
+            InjectionValue referenceValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
             try {
                 referenceValue = frame.getValue(frame.getStackLocation(calledMethod.getNumParams()));
             } catch (DataflowAnalysisException e) {
@@ -290,7 +269,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     }
                     
                     if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
-                        pushValue.setValidated(cleanerProperty.getVulnerabilites());
+                        pushValue.setValidated(cleanerProperty.getVulnerabilities());
                     }
                 } else if (cleanerProperty.getKind() == CleanerProperty.SANITIZER_TYPE) {
                     if (DEBUG) {
@@ -306,7 +285,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                         throw new InvalidBytecodeException("Not enough values on the stack", e);
                     }
                     
-                    pushValue.setValidated(cleanerProperty.getVulnerabilites());
+                    pushValue.setValidated(cleanerProperty.getVulnerabilities());
                     pushValue.decontaminate();
                 }
             } else if (returnContaminatedValueProperty != null) {
@@ -320,7 +299,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     pushValue.addSourceLineAnnotation(currentSourceLine());
                 }
             } else {
-                throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                // throw new IllegalStateException("Called stranger method: " + calledXMethod);
             }
         }
         
@@ -399,7 +378,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     
     public void handleLoadFieldInstruction(FieldInstruction obj) {
         ReturnContaminatedValueProperty property = returnContaminatedValuePropertyDatabase.getProperty(XFactory.createXField(obj, cpg).getFieldDescriptor());
-        InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED_VALUE);
+        InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
         if (property != null && property.isContaminated()) {
             pushValue.setKind(InjectionValue.CONTAMINATED);
         }

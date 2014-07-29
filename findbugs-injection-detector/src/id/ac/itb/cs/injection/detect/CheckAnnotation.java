@@ -37,10 +37,7 @@ import id.ac.itb.cs.injection.database.SensitiveParameterPropertyDatabase;
 import id.ac.itb.cs.injection.util.Util;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InvokeInstruction;
-import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.*;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -57,9 +54,7 @@ public class CheckAnnotation implements Detector {
     private ReturnContaminatedValuePropertyDatabase returnContaminatedValuePropertyDatabase;
     
     private SensitiveParameterPropertyDatabase sensitiveParameterPropertyDatabase;
-    
-    
-    
+
     private BugReporter bugReporter;
     
     public CheckAnnotation(BugReporter bugReporter) {
@@ -127,6 +122,13 @@ public class CheckAnnotation implements Detector {
             for (XMethod calledXMethod : calledMethods) {
                 checkAnnotations(calledXMethod.getMethodDescriptor());
             }
+        }
+
+
+        AnnotationEntryGen[] annotationEntries = callerMethodGen.getAnnotationEntries();
+        for (AnnotationEntryGen entry : annotationEntries) {
+            entry.getTypeName();
+            System.out.println(entry);
         }
     }
     

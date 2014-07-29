@@ -130,10 +130,11 @@ public class FindInjectionSink implements Detector {
                                             for (SourceLineAnnotation sourceLineAnnotation : param.getAnnotations()) {
                                                 bug.addSourceLine(sourceLineAnnotation);
                                             }
+                                            bug.addString(vulnerability.toString());
                                             bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
-                                            bugAccumulator.reportAccumulatedBugs();
                                         }
                                     }
+                                    bugAccumulator.reportAccumulatedBugs();
                                     
                                     // Mark caller as sink, if the parameters are from arguments.
                                     for (int localIndex : param.getLocalSource()) {
@@ -157,10 +158,12 @@ public class FindInjectionSink implements Detector {
                                             BugInstance bug = new BugInstance(this, "INJ_SINK_CALLED", Priorities.NORMAL_PRIORITY);
                                             bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                             bug.addCalledMethod(callerXMethod);
+                                            bug.addString(vulnerabilities.toString());
                                             bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
-                                            bugAccumulator.reportAccumulatedBugs();
                                         }
                                     }
+                                    bugAccumulator.reportAccumulatedBugs();
+
                                     sensitiveParameterPropertyDatabase.setProperty(methodDescriptor, callerSensitive);
                                 }
                             }

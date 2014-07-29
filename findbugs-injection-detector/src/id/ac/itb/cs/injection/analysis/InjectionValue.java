@@ -19,15 +19,13 @@
 
 package id.ac.itb.cs.injection.analysis;
 
+import edu.umd.cs.findbugs.SourceLineAnnotation;
 import id.ac.itb.cs.Vulnerability;
 
+import javax.annotation.Nonnull;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.annotation.Nonnull;
-
-import edu.umd.cs.findbugs.SourceLineAnnotation;
 
 /**
  * @author Edward Samuel
@@ -40,7 +38,7 @@ public class InjectionValue {
     public static final int UNCONTAMINATED = 1;
     public static final int CONTAMINATED = 2;
 
-    public static final InjectionValue UNCONTAMINATED_VALUE = new InjectionValue(UNCONTAMINATED);
+    // public static final InjectionValue UNCONTAMINATED_VALUE = new InjectionValue(UNCONTAMINATED);
     
     /**
      * Type of value: {@link #UNCONTAMINATED} or {@link #CONTAMINATED} from user input.
@@ -266,16 +264,16 @@ public class InjectionValue {
     public String toString() {
         if (kind == CONTAMINATED) {
             if (!decontaminated.isEmpty()) {
-                return "D";
+                return " D" + localSource.toString();
             } else if (!validated.isEmpty()) {
-                return "V";
+                return " V" + localSource.toString();
             } else if (!direct) {
-                return "Y";
+                return " Y" + localSource.toString();
             } else {
-                return "X";
+                return " X" + localSource.toString();
             }
         } else if (kind == UNCONTAMINATED) {
-            return "-";
+            return " U"  + localSource.toString();
 //            if (value == null) {
 //                return "-";
 //            }

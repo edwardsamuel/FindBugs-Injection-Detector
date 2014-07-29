@@ -34,18 +34,18 @@ public class CleanerProperty {
     public static final int SANITIZER_TYPE = 2;
     
     private int kind;
-    public EnumSet<Vulnerability> vulnerabilites;
+    public EnumSet<Vulnerability> vulnerabilities;
 
     public CleanerProperty(int kind) {
         super();
         this.kind = kind;
-        this.vulnerabilites = EnumSet.noneOf(Vulnerability.class);
+        this.vulnerabilities = EnumSet.noneOf(Vulnerability.class);
     }
 
     public CleanerProperty(int kind, EnumSet<Vulnerability> vulnerabilities) {
         super();
         this.kind = kind;
-        this.vulnerabilites = vulnerabilities;
+        this.vulnerabilities = vulnerabilities;
     }
     
     public int getKind() {
@@ -56,12 +56,12 @@ public class CleanerProperty {
         this.kind = kind;
     }
     
-    public EnumSet<Vulnerability> getVulnerabilites() {
-        return vulnerabilites;
+    public EnumSet<Vulnerability> getVulnerabilities() {
+        return vulnerabilities;
     }
 
-    public void setVulnerabilites(EnumSet<Vulnerability> vulnerabilites) {
-        this.vulnerabilites = vulnerabilites;
+    public void setVulnerabilities(EnumSet<Vulnerability> vulnerabilities) {
+        this.vulnerabilities = vulnerabilities;
     }
 
     public String encode() {
@@ -82,7 +82,7 @@ public class CleanerProperty {
         sb.append("|");
         
         boolean firstVulnerabily = true;
-        for (Vulnerability vulnerability : vulnerabilites) {
+        for (Vulnerability vulnerability : vulnerabilities) {
             if (!firstVulnerabily) {
                 sb.append(",");
             } else {

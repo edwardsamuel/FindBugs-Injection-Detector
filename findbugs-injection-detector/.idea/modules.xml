@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../findbugs-injection-annotation/findbugs-injection-annotation.iml" filepath="$PROJECT_DIR$/../findbugs-injection-annotation/findbugs-injection-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/findbugs-injection-detector.iml" filepath="$PROJECT_DIR$/findbugs-injection-detector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../web-test/web-test.iml" filepath="$PROJECT_DIR$/../web-test/web-test.iml" />
     </modules>
   </component>
 </project>

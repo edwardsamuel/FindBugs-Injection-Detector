@@ -11,6 +11,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/findbugs-injection-detector$Driver.coverage" NAME="Driver Coverage Results" MODIFIED="1406614138833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -55,23 +58,8 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java" line="49" class="id.ac.itb.cs.injection.database.SensitiveParameterPropertyDatabase" package="id.ac.itb.cs.injection.database">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java" line="48" class="id.ac.itb.cs.injection.database.SensitiveParameterPropertyDatabase" package="id.ac.itb.cs.injection.database">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java" line="157" class="id.ac.itb.cs.injection.detect.FindInjectionSink" package="id.ac.itb.cs.injection.detect">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -99,19 +87,7 @@
       <file leaf-file-name="CheckAnnotation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/CheckAnnotation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="40" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="1989">
-              <folding>
-                <element signature="e#0#6557#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CleanerPropertyDatabase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="21" selection-start="2156" selection-end="2156" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="1649">
+            <state line="130" column="0" selection-start="5727" selection-end="5727" vertical-scroll-proportion="0.0" vertical-offset="1418" max-vertical-offset="2074">
               <folding />
             </state>
           </provider>
@@ -120,34 +96,34 @@
       <file leaf-file-name="ReturnContaminatedValuePropertyDatabase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValuePropertyDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="21" selection-start="2199" selection-end="2199" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1666">
+            <state line="45" column="41" selection-start="2003" selection-end="2003" vertical-scroll-proportion="0.0" vertical-offset="381" max-vertical-offset="1768">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SensitiveParameterPropertyDatabase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java">
+      <file leaf-file-name="CleanerPropertyDatabase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="33" selection-start="2145" selection-end="2145" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="1394">
+            <state line="55" column="53" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="1649">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FindInjectionSink.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java">
+      <file leaf-file-name="ReturnContaminatedValueProperty.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValueProperty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="58" selection-start="2910" selection-end="2910" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3162">
+            <state line="33" column="16" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="646">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cleaner.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java">
+      <file leaf-file-name="InjectionValue.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionValue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="2" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="425">
+            <state line="262" column="13" selection-start="8364" selection-end="8364" vertical-scroll-proportion="0.29333332" vertical-offset="4075" max-vertical-offset="4726">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -155,39 +131,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReturnContaminated.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/ReturnContaminated.java">
+      <file leaf-file-name="SqlDirectUse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../web-test/src/id/ac/itb/injection/test/SqlDirectUse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="2" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="374">
+            <state line="37" column="36" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.0" vertical-offset="347" max-vertical-offset="1564">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1406631343737" expanded="true" signature="1679:1739" placeholder="SELECT * FRO..member..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SensitiveParameter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/SensitiveParameter.java">
+      <file leaf-file-name="InjectionFrameVisitorAnalysis.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionFrameVisitorAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="2" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="408">
+            <state line="68" column="65" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0" vertical-offset="387" max-vertical-offset="6324">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CleanerType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/CleanerType.java">
+      <file leaf-file-name="InjectionAnalysis.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="24" selection-start="29" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+            <state line="92" column="0" selection-start="3613" selection-end="3613" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="2193">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vulnerability.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java">
+      <file leaf-file-name="InjectionDataflowFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionDataflowFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.5615616" vertical-offset="204" max-vertical-offset="765">
+            <state line="50" column="0" selection-start="1829" selection-end="1829" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="884">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CleanerProperty.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerProperty.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="56" selection-start="2863" selection-end="2863" vertical-scroll-proportion="0.0" vertical-offset="994" max-vertical-offset="1632">
               <folding />
             </state>
           </provider>
@@ -204,23 +189,39 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/EngineRegistrar.java" />
-        <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java" />
         <option value="$PROJECT_DIR$/etc/findbugs.xml" />
         <option value="$PROJECT_DIR$/etc/messages.xml" />
         <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/db_sink.txt" />
         <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/db_validator.txt" />
-        <option value="$PROJECT_DIR$/build.xml" />
-        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/CheckAnnotation.java" />
-        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java" />
-        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java" />
-        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValuePropertyDatabase.java" />
-        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java" />
         <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/CleanerType.java" />
         <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/ReturnContaminated.java" />
-        <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java" />
         <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/SensitiveParameter.java" />
+        <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java" />
+        <option value="$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/SourceLineAnnotation.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerProperty.java" />
+        <option value="$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedAnnotation.java" />
+        <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/CheckAnnotation.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValueProperty.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValuePropertyDatabase.java" />
+        <option value="$PROJECT_DIR$/../web-test/src/id/ac/itb/injection/test/SqlDirectUse.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionDataflowFactory.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionFrameVisitorAnalysis.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionAnalysis.java" />
+        <option value="$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionValue.java" />
       </list>
     </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -256,8 +257,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,15 +266,151 @@
               <option name="myItemId" value="findbugs-injection-detector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="findbugs-injection-detector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="injection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="injection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="injection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findbugs-injection-detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="etc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -339,7 +476,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../findbugs-injection-annotation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../findbugs" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -352,6 +489,10 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="findbugs-injection-detector" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -362,32 +503,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Driver">
-    <configuration default="false" name="FindInjectionSink" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="edu.umd.cs.findbugs.FindBugs2" />
-      <option name="VM_PARAMETERS" value="-Dinj.debug=true" />
-      <option name="PROGRAM_PARAMETERS" value="-visitors CheckAnnotation -visitors FindInjectionSink -project &quot;D:\Security\SimpleTest.fbp&quot;" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="findbugs-injection-detector" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="install" />
-      </method>
-    </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails" singleton="true">
       <module name="" />
       <setting name="vmparams" value="" />
@@ -435,25 +550,6 @@
       <option name="trusted" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -480,6 +576,25 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -518,23 +633,15 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
@@ -572,30 +679,31 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
-    <configuration default="false" name="TestDataflowAnalysis" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="edu.umd.cs.findbugs.FindBugs2" />
-      <option name="VM_PARAMETERS" value="-Ddataflow.classname=id.ac.itb.cs.injection.analysis.InjectionDataflow -Ddataflow.printcfg=true -Dinj.debug=true" />
-      <option name="PROGRAM_PARAMETERS" value="-visitors CheckAnnotation -visitor-visitors CheckAnnotation -visitors TestDataflowAnalysis -project &quot;D:\Security\SimpleTest.fbp&quot;s FindInjectionSink -project &quot;D:\Security\SimpleTest.fbp&quot;" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="findbugs-injection-detector" />
-      <envs />
-      <method>
-        <option name="Make" enabled="false" />
-        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="install" />
-      </method>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
     </configuration>
-    <configuration default="false" name="Driver" type="Application" factoryName="Application">
+    <configuration default="false" name="Driver" type="Application" factoryName="Application" singleton="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="edu.umd.cs.findbugs.gui2.Driver" />
       <option name="VM_PARAMETERS" value="-Dinj.debug=true" />
-      <option name="PROGRAM_PARAMETERS" value="-project &quot;D:\Security\SimpleTest.fbp&quot;" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="PROGRAM_PARAMETERS" value="-project &quot;D:\Git\findbugs-injection-detector\web-test.fbp&quot;" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/../findbugs" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -603,23 +711,148 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="findbugs-injection-detector" />
       <envs />
+      <RunnerSettings RunnerId="Cover" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Cover" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" enabled="false" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="clean" />
         <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="install" />
       </method>
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Application.FindInjectionSink" />
+    <configuration default="false" name="TestDataflowAnalysis" type="Application" factoryName="Application" singleton="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="edu.umd.cs.findbugs.FindBugs2" />
+      <option name="VM_PARAMETERS" value="-Ddataflow.classname=id.ac.itb.cs.injection.analysis.InjectionDataflow -Ddataflow.printcfg=true -Dinj.debug=true" />
+      <option name="PROGRAM_PARAMETERS" value="-visitors CheckAnnotation -visitors TestDataflowAnalysis -project &quot;D:\Git\findbugs-injection-detector\web-test.fbp&quot;" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/../findbugs" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="findbugs-injection-detector" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="clean" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="install" />
+      </method>
+    </configuration>
+    <configuration default="false" name="FindInjectionSink" type="Application" factoryName="Application" singleton="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="edu.umd.cs.findbugs.FindBugs2" />
+      <option name="VM_PARAMETERS" value="-Dinj.debug=true" />
+      <option name="PROGRAM_PARAMETERS" value="-visitors CheckAnnotation -visitors FindInjectionSink -home &quot;D:\Git\findbugs-injection-detector\findbugs&quot; -project &quot;D:\Git\findbugs-injection-detector\web-test.fbp&quot;" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/../findbugs" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="findbugs-injection-detector" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="clean" />
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="install" />
+      </method>
+    </configuration>
+    <configuration default="false" name="Tomcat 7.0.41" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.41" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Tomcat_7_0_41_findbugs-injection-detector" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Cover" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="24516" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Application.Driver" />
       <item index="1" class="java.lang.String" itemvalue="Application.TestDataflowAnalysis" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Driver" />
+      <item index="2" class="java.lang.String" itemvalue="Application.FindInjectionSink" />
+      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 7.0.41" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.FindInjectionSink" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -630,71 +863,49 @@
       <workItem from="1406562148128" duration="116000" />
       <workItem from="1406562270349" duration="1261000" />
       <workItem from="1406563816014" duration="5590000" />
+      <workItem from="1406613191663" duration="7664000" />
+      <workItem from="1406622085113" duration="1421000" />
+      <workItem from="1406624139007" duration="10774000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6967000" />
+    <option name="totallyTimeSpent" value="26826000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39908257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297546" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297546" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16691843" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38190183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33435583" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2527881" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25302115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46941897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22356495" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.86349696" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25302115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32874617" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -716,15 +927,51 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <targetFilters>
+        <filter targetName="classes" isVisible="false" />
+        <filter targetName="build" isVisible="false" />
+        <filter targetName="install" isVisible="false" />
+        <filter targetName="clean" isVisible="false" />
+      </targetFilters>
       <expanded value="true" />
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/EngineRegistrar.java">
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="969">
+        <state line="68" column="58" selection-start="2910" selection-end="2910" vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="3536" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="2" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="425" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/ReturnContaminated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="2" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="374" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/SensitiveParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="2" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="408" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/CleanerType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="29" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="289" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="765">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/EngineRegistrar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="969" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
@@ -734,44 +981,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/findbugs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="65" selection-start="26068" selection-end="26072" vertical-scroll-proportion="0.0" vertical-offset="6085" max-vertical-offset="19754">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/findbugs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="65" selection-start="26068" selection-end="26072" vertical-scroll-proportion="0.0" vertical-offset="6085" max-vertical-offset="19754">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/annotation/Target.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="18" selection-start="1579" selection-end="1579" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="867">
-          <folding />
-        </state>
+        <state line="47" column="18" selection-start="1579" selection-end="1579" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="867" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/annotation/RetentionPolicy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="12" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="680">
-          <folding />
-        </state>
+        <state line="18" column="12" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="680" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/annotation/Retention.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="18" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="25" column="18" selection-start="788" selection-end="788" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/EngineRegistrar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="40" selection-start="1952" selection-end="1952" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+        <state line="41" column="40" selection-start="1952" selection-end="1952" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etc/messages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="4" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1003">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/db_source.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/db_validator.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/db_sink.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="20" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="748">
           <folding />
         </state>
       </provider>
@@ -783,156 +1043,228 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etc/messages.xml">
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/SourceLineAnnotation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="4" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1003">
+        <state line="59" column="13" selection-start="2259" selection-end="2259" vertical-scroll-proportion="0.26984128" vertical-offset="102" max-vertical-offset="15929" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/SourceLineAnnotation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="26" selection-start="387" selection-end="388" vertical-scroll-proportion="-0.44371942" vertical-offset="408" max-vertical-offset="2703" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/CleanerType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="24" selection-start="29" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/org/omg/CORBA/UNKNOWN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="19" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/ba/AnnotationEnumeration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="372" selection-end="372" vertical-scroll-proportion="-5.04" vertical-offset="27" max-vertical-offset="442" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/ba/AnnotationEnumeration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="14" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/db_source.txt">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/../web-test/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/db_validator.txt">
+    <entry file="file://$PROJECT_DIR$/../web-test/web-test.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
+        <state line="13" column="14" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/db_sink.txt">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/classfile/impl/AnalysisCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+        <state line="541" column="0" selection-start="21341" selection-end="21341" vertical-scroll-proportion="0.0" vertical-offset="8221" max-vertical-offset="9214">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/util/Util.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/reflect/Constructor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="33" selection-start="2120" selection-end="2120" vertical-scroll-proportion="-5.04" vertical-offset="622" max-vertical-offset="2601">
+        <state line="512" column="0" selection-start="20247" selection-end="20247" vertical-scroll-proportion="0.315" vertical-offset="8255" max-vertical-offset="10965">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/ba/interproc/PropertyDatabase.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/jre/lib/rt.jar!/sun/reflect/DelegatingConstructorAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="16" selection-start="1091" selection-end="1091" vertical-scroll-proportion="-4.72" vertical-offset="307" max-vertical-offset="748">
+        <state line="11" column="28" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/classfile/ReflectionDatabaseFactory.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="14" selection-start="673" selection-end="673" vertical-scroll-proportion="-9.04" vertical-offset="12" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/edu/umd/cs/findbugs/classfile/impl/AnalysisCache.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="18" selection-start="5513" selection-end="5513" vertical-scroll-proportion="-5.04" vertical-offset="1081" max-vertical-offset="1666">
+        <state line="2031" column="30" selection-start="86186" selection-end="86186" vertical-scroll-proportion="0.0" vertical-offset="33429" max-vertical-offset="51901">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="31" selection-start="867" selection-end="867" vertical-scroll-proportion="0.58219177" vertical-offset="204" max-vertical-offset="935">
+        <state line="33" column="13" selection-start="991" selection-end="991" vertical-scroll-proportion="0.0" vertical-offset="314" max-vertical-offset="952">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerProperty.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/src.zip!/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="993" selection-end="993" vertical-scroll-proportion="0.0" vertical-offset="284" max-vertical-offset="1632">
+        <state line="1191" column="0" selection-start="43095" selection-end="43095" vertical-scroll-proportion="0.0" vertical-offset="19523" max-vertical-offset="34748">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/CheckAnnotation.java">
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/ba/jsr305/ValidationSecurityManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="40" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="1989">
-          <folding>
-            <element signature="e#0#6557#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state line="82" column="0" selection-start="3352" selection-end="3352" vertical-scroll-proportion="0.0" vertical-offset="891" max-vertical-offset="1649">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java">
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/classfile/ReflectionDatabaseFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="21" selection-start="2156" selection-end="2156" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="1649">
+        <state line="111" column="0" selection-start="3634" selection-end="3634" vertical-scroll-proportion="0.6975" vertical-offset="1268" max-vertical-offset="2023">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_45/jre/lib/rt.jar!/sun/reflect/NativeConstructorAccessorImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="28" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/SensitiveParameterPropertyDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="33" selection-start="2145" selection-end="2145" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="1394">
+        <state line="48" column="23" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="1394">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValuePropertyDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerProperty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="21" selection-start="2199" selection-end="2199" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1666">
+        <state line="99" column="56" selection-start="2863" selection-end="2863" vertical-scroll-proportion="0.0" vertical-offset="994" max-vertical-offset="1632">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java">
+    <entry file="file://$PROJECT_DIR$/../findbugs/src/java/edu/umd/cs/findbugs/ba/interproc/PropertyDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="58" selection-start="2910" selection-end="2910" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3162">
+        <state line="271" column="30" selection-start="8381" selection-end="8381" vertical-scroll-proportion="0.60465115" vertical-offset="3727" max-vertical-offset="4114">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/ReturnContaminated.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="2" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="374">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/Cleaner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="2" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="425">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="11" column="33" selection-start="265" selection-end="265" vertical-scroll-proportion="0.34" vertical-offset="0" max-vertical-offset="400">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/annotation/SensitiveParameter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="2" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="408">
+        <state line="10" column="2" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValueProperty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="16" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="646">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/CleanerType.java">
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/ReturnContaminatedValuePropertyDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="29" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+        <state line="45" column="41" selection-start="2003" selection-end="2003" vertical-scroll-proportion="0.0" vertical-offset="381" max-vertical-offset="1768">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../findbugs-injection-annotation/src/id/ac/itb/cs/Vulnerability.java">
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/database/CleanerPropertyDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1213" selection-end="1213" vertical-scroll-proportion="0.5615616" vertical-offset="204" max-vertical-offset="765">
+        <state line="55" column="53" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="1649">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../web-test/src/id/ac/itb/injection/test/SqlDirectUse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="36" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.0" vertical-offset="347" max-vertical-offset="1564">
+          <folding>
+            <marker date="1406631343737" expanded="true" signature="1679:1739" placeholder="SELECT * FRO..member..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/CheckAnnotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="0" selection-start="5727" selection-end="5727" vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="2074">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/detect/FindInjectionSink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="79" selection-start="9656" selection-end="9656" vertical-scroll-proportion="0.0" vertical-offset="1503" max-vertical-offset="3213">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionDataflowFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="0" selection-start="1829" selection-end="1829" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionFrameVisitorAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="65" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0" vertical-offset="387" max-vertical-offset="6324">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="3613" selection-end="3613" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="2193">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/id/ac/itb/cs/injection/analysis/InjectionValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="262" column="13" selection-start="8364" selection-end="8364" vertical-scroll-proportion="0.29333332" vertical-offset="4075" max-vertical-offset="4726">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -953,7 +1285,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Web</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -988,7 +1320,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>findbugs-injection-detector</last-edited>
+          <last-edited>web-test</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
