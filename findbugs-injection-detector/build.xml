@@ -1,0 +1,49 @@
+<project name="injection-detector" default="build">
+	<!-- Classpath for compiling the plugin -->
+	<path id="injection-detector.classpath">
+	    <pathelement location="../findbugs/lib/findbugs.jar"/>
+	    <pathelement location="../findbugs/lib/bcel.jar"/>
+	</path>
+	
+	<!-- Compile plugin classes -->
+	<target name="classes">
+		<javac
+            debug="true"
+            destdir="bin"
+			target="1.5">
+            <src path="src" />
+            <src path="../findbugs-injection-annotation/src" />
+			<classpath refid="injection-detector.classpath"/>
+		</javac>
+	</target>
+
+	<!-- Build the plugin jar file -->
+	<target name="build" depends="classes">
+		<jar destfile="injection-detector.jar">
+			<fileset dir="etc">
+				<include name="findbugs.xml"/>
+				<include name="messages*.xml"/>
+			</fileset>
+            <fileset dir="database">
+                <include name="db_*.txt"/>
+            </fileset>
+			<fileset dir="bin">
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- Install the plugin in the findbugs plugin directory -->
+	<target name="install" depends="build">
+		<copy todir="../findbugs/plugin" file="injection-detector.jar"/>
+	</target>
+	
+	<!-- Clean -->
+	<target name="clean">
+		<delete>
+			<fileset dir="bin" includes="**" />
+			<fileset file="injection-detector.jar"/>
+		</delete>
+	</target>
+
+</project>

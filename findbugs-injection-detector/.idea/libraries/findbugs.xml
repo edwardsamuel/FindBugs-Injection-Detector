@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="findbugs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../findbugs/lib/findbugs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../findbugs/lib/bcel.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FindbugsPlugin
+		pluginid="id.ac.itb.cs.injection"
+		defaultenabled="true"
+		provider="Edward Samuel Pasaribu">
+
+	<!-- Detector ordering constraints -->
+	<OrderingConstraints>
+        <SplitPass>
+            <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
+            <Later class="id.ac.itb.cs.injection.detect.FindInjectionSink"/>
+        </SplitPass>
+	</OrderingConstraints>
+	
+	<!-- Detectors -->
+    <Detector class="id.ac.itb.cs.injection.detect.CheckAnnotation"
+              speed="fast"
+              reports=""
+              hidden="true" />
+    <Detector class="id.ac.itb.cs.injection.detect.FindInjectionSink"
+              speed="slow"
+              reports="" />
+
+    <!-- Analysis engine registrar -->
+    <EngineRegistrar class="id.ac.itb.cs.injection.EngineRegistrar"/>
+
+	<!-- Bug patterns -->
+    <BugCode abbrev="INJ"/>
+
+    <BugPattern abbrev="INJ" type="INJ_SINK_CALLED" category="SECURITY" />
+
+</FindbugsPlugin>

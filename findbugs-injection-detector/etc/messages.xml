@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Messages file for demo plugin
+
+	Written by David Hovemeyer	
+	This code is in the public domain
+-->
+
+<MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="messagecollection.xsd">
+
+	<!-- Plugin information -->
+	<Plugin>
+		<ShortDescription>Injection detector plugin</ShortDescription>
+		<Details>
+			<![CDATA[
+			    <p>This plugin find injection sink and check for its parameters for contamination of user input.</p>
+			]]>
+		</Details>
+	</Plugin>
+	
+	<!-- Detectors -->
+    <Detector class="id.ac.itb.cs.injection.detect.CheckAnnotation">
+        <Details>
+            <![CDATA[
+	            <p>This detector check for user annotation.</p>
+            ]]>
+        </Details>
+    </Detector>
+
+    <Detector class="id.ac.itb.cs.injection.detect.FindInjectionSink">
+        <Details>
+            <![CDATA[
+	            <p>This detector find injection sink and check for user contaminated input.</p>
+            ]]>
+        </Details>
+    </Detector>
+
+	<!-- Bug patterns -->
+    <BugPattern type="INJ_SINK_CALLED">
+        <ShortDescription>Sink Called</ShortDescription>
+        <LongDescription>Called sink method {1}.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>A sink called.</p>
+            ]]>
+        </Details>
+    </BugPattern>
+	
+	<!-- Bug codes -->
+	<BugCode abbrev="INJ">Injection</BugCode>
+</MessageCollection>
