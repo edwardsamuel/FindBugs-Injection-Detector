@@ -40,12 +40,9 @@ public class EngineRegistrar implements IAnalysisEngineRegistrar {
     };
 
     public void registerAnalysisEngines(IAnalysisCache analysisCache) {
-        System.out.println("EngineRegistrar");
-        
         for (IDatabaseFactory<?> engine : databaseFactoryList) {
             engine.registerWith(analysisCache);
         }
-        
         new InjectionDataflowFactory().registerWith(analysisCache);
     }
 }

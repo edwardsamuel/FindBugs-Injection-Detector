@@ -145,22 +145,45 @@ public class CheckAnnotation implements Detector {
     private void checkFieldAnnotations(XField xField) {
         FieldDescriptor descriptor = xField.getFieldDescriptor();
 
+        CleanerProperty cProperty = cleanerPropertyDatabase.getProperty(descriptor);
+        if (cProperty == null) {
+            cProperty = new CleanerProperty(CleanerType.UNKNOWN);
+        }
+
         ReturnContaminatedValueProperty rProperty = returnContaminatedValuePropertyDatabase.getProperty(descriptor);
         if (rProperty == null) {
-            // TODO: Check for user annotation
             rProperty = new ReturnContaminatedValueProperty(false);
-
-            Collection<AnnotationValue> annotationEntries = xField.getAnnotations();
-            for (AnnotationValue entry : annotationEntries) {
-                if (entry.getAnnotationClass().matches(ReturnContaminated.class)) {
-                    rProperty.setContaminated(true);
-                    System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                }
-                System.out.println(entry);
-            }
-
-            returnContaminatedValuePropertyDatabase.setProperty(descriptor, rProperty);
         }
+
+        Collection<AnnotationValue> annotations = xField.getAnnotations();
+        for (AnnotationValue annotation : annotations) {
+            ClassDescriptor annotationDescriptor = annotation.getAnnotationClass();
+            if (annotationDescriptor.matches(ReturnContaminated.class)) {
+                if (DEBUG) {
+                    System.out.println("Field " + xField + " contain @ReturnContaminated annotation");
+                }
+
+                rProperty.setContaminated(true);
+            } else if (annotationDescriptor.matches(Cleaner.class)) {
+                if (DEBUG) {
+                    System.out.println("Field " + xField + " contain @Cleaner annotation");
+                }
+
+                EnumValue type = (EnumValue) annotation.getValue("type");
+                cProperty.setCleanerType(CleanerType.valueOf(type.value));
+
+                EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
+                Object[] values = (Object[]) annotation.getValue("vulnerabilities");
+                for (Object value : values) {
+                    EnumValue enumValue = (EnumValue) value;
+                    vulnerabilities.add(Vulnerability.valueOf(enumValue.value));
+                }
+                cProperty.setVulnerabilities(vulnerabilities);
+            }
+        }
+
+        cleanerPropertyDatabase.setProperty(descriptor, cProperty);
+        returnContaminatedValuePropertyDatabase.setProperty(descriptor, rProperty);
     }
     
     private void checkMethodAnnotations(XMethod xMethod) {
@@ -168,7 +191,7 @@ public class CheckAnnotation implements Detector {
 
         CleanerProperty cProperty = cleanerPropertyDatabase.getProperty(descriptor);
         if (cProperty == null) {
-            cProperty = new CleanerProperty(CleanerProperty.UNKNOWN_TYPE);
+            cProperty = new CleanerProperty(CleanerType.UNKNOWN);
         }
 
         ReturnContaminatedValueProperty rProperty = returnContaminatedValuePropertyDatabase.getProperty(descriptor);
@@ -195,14 +218,8 @@ public class CheckAnnotation implements Detector {
                     System.out.println("Method " + xMethod + " contain @Cleaner annotation");
                 }
 
-                CleanerType type = (CleanerType) annotation.getValue("type");
-                if (type == CleanerType.UNKNOWN) {
-                    cProperty.setKind(CleanerProperty.UNKNOWN_TYPE);
-                } else if (type == CleanerType.VALIDATOR) {
-                    cProperty.setKind(CleanerProperty.VALIDATOR_TYPE);
-                } else if (type == CleanerType.SANITIZER) {
-                    cProperty.setKind(CleanerProperty.SANITIZER_TYPE);
-                }
+                EnumValue type = (EnumValue) annotation.getValue("type");
+                cProperty.setCleanerType(CleanerType.valueOf(type.value));
 
                 EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
                 Object[] values = (Object[]) annotation.getValue("vulnerabilities");
@@ -212,7 +229,6 @@ public class CheckAnnotation implements Detector {
                 }
                 cProperty.setVulnerabilities(vulnerabilities);
             }
-            System.out.println(annotation);
         }
 
         for (int i = 0, numParams = xMethod.getNumParams(); i < numParams; i++) {

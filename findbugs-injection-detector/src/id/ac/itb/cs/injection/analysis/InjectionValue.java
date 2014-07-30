@@ -21,6 +21,7 @@ package id.ac.itb.cs.injection.analysis;
 
 import edu.umd.cs.findbugs.SourceLineAnnotation;
 import id.ac.itb.cs.Vulnerability;
+import id.ac.itb.cs.injection.database.CleanerProperty;
 
 import javax.annotation.Nonnull;
 import java.util.EnumSet;
@@ -31,9 +32,6 @@ import java.util.Set;
  * @author Edward Samuel
  */
 public class InjectionValue {
-
-    public static final int TOP = -1;
-    public static final int BOTTOM = -2;
 
     public static final int UNCONTAMINATED = 1;
     public static final int CONTAMINATED = 2;
@@ -54,7 +52,7 @@ public class InjectionValue {
     /**
      * If {@link #kind} is {@link #CONTAMINATED}, then sourceLineAnnotation may point to the line from where contaminated value is originating.
      */
-    private Set<SourceLineAnnotation> annotations;
+    private Set<SourceLineAnnotation> sourceLineAnnotations;
 
     /**
      * 
@@ -70,6 +68,8 @@ public class InjectionValue {
      * 
      */
     private EnumSet<Vulnerability> validated;
+
+    private CleanerProperty cleanerProperty;
     
     public Object value;
 
@@ -77,39 +77,30 @@ public class InjectionValue {
         this.kind = kind;
         this.direct = false;
         this.localSource = new HashSet<Integer>();
-        this.annotations = new HashSet<SourceLineAnnotation>();
+        this.sourceLineAnnotations = new HashSet<SourceLineAnnotation>();
         this.validated = EnumSet.noneOf(Vulnerability.class);
         this.decontaminated = EnumSet.noneOf(Vulnerability.class);
+        this.cleanerProperty = null;
     }
     
     public InjectionValue(@Nonnull InjectionValue source) {
         this.kind = source.kind;
         this.direct = source.direct;
         this.localSource = new HashSet<Integer>(source.localSource);
-        this.annotations = new HashSet<SourceLineAnnotation>(source.annotations);
+        this.sourceLineAnnotations = new HashSet<SourceLineAnnotation>(source.sourceLineAnnotations);
         this.validated = EnumSet.copyOf(source.validated);
         this.decontaminated = EnumSet.copyOf(source.decontaminated);
+        this.cleanerProperty = source.cleanerProperty;
         
         this.value = source.value;
     }
     
     public void meetWith(@Nonnull InjectionValue other) {
-        if (other.kind == BOTTOM) {
-            this.kind = BOTTOM;
-            this.direct = false;
-            this.localSource = null;
-            this.annotations = null;
-            this.validated = null;
-            this.decontaminated = null;
-            
-            return;
-        }
-
         if (this.kind < other.kind) {
             this.kind = other.kind;
-            this.annotations = new HashSet<SourceLineAnnotation>(other.annotations);
+            this.sourceLineAnnotations = new HashSet<SourceLineAnnotation>(other.sourceLineAnnotations);
         } else if (this.kind == other.kind && this.kind == CONTAMINATED) {
-            this.annotations.addAll(other.annotations);
+            this.sourceLineAnnotations.addAll(other.sourceLineAnnotations);
             this.direct |= other.direct;
             this.localSource.addAll(other.localSource);
             this.validated.retainAll(other.validated);
@@ -123,21 +114,11 @@ public class InjectionValue {
         this.localSource.addAll(other.localSource);
         this.validated.addAll(other.validated);
         this.decontaminated.addAll(other.decontaminated);
+        this.cleanerProperty = other.cleanerProperty;
 
         this.value = other.value;
     }
-    
-    public void copyFrom(@Nonnull InjectionValue other) {
-        this.kind = other.kind;
-        this.direct = other.direct;
-        this.localSource = new HashSet<Integer>(other.localSource);
-        this.annotations = new HashSet<SourceLineAnnotation>(other.annotations);
-        this.validated = EnumSet.copyOf(other.validated);
-        this.decontaminated = EnumSet.copyOf(other.decontaminated);
-        
-        this.value = other.value;
-    }
-   
+
     public static InjectionValue merge(@Nonnull InjectionValue a, @Nonnull InjectionValue b) {
         InjectionValue result = new InjectionValue(a);
         result.meetWith(b);
@@ -156,12 +137,12 @@ public class InjectionValue {
         this.kind = kind;
     }
 
-    public Set<SourceLineAnnotation> getAnnotations() {
+    public Set<SourceLineAnnotation> getSourceLineAnnotations() {
         if (this.kind != CONTAMINATED) {
             throw new IllegalStateException("Can not access sourceLineAnnotation for non-CONTAMINATED object.");
         }
         
-        return annotations;
+        return sourceLineAnnotations;
     }
 
     public void addSourceLineAnnotation(SourceLineAnnotation sourceLineAnnotation) {
@@ -169,7 +150,7 @@ public class InjectionValue {
             throw new IllegalStateException("Can not access sourceLineAnnotation for non-CONTAMINATED object.");
         }
         
-        this.annotations.add(sourceLineAnnotation);
+        this.sourceLineAnnotations.add(sourceLineAnnotation);
     }
     
     public boolean isDirect() {
@@ -187,7 +168,15 @@ public class InjectionValue {
         
         this.direct = direct;
     }
-    
+
+    public CleanerProperty getCleanerProperty() {
+        return cleanerProperty;
+    }
+
+    public void setCleanerProperty(CleanerProperty cleanerProperty) {
+        this.cleanerProperty = cleanerProperty;
+    }
+
     public boolean isDecontaminated() {
         if (this.kind != CONTAMINATED) {
             throw new IllegalStateException("Can not get decontaminated value if kind is not CONTAMINATED object");
@@ -222,10 +211,6 @@ public class InjectionValue {
 
     public void clearLocalSource() {
         this.localSource.clear();
-    }
-    
-    public boolean isSafeForSink(Vulnerability vulnerability) {
-        return this.kind == UNCONTAMINATED || (this.kind == CONTAMINATED && this.decontaminated.contains(vulnerability));
     }
 
     @Override
@@ -265,14 +250,13 @@ public class InjectionValue {
             }
         } else if (kind == UNCONTAMINATED) {
             return "U";//  + localSource.toString();
-//            if (value == null) {
-//                return "-";
-//            }
-//            return "U[" + value + "]";
         }
         return "<UNDETERMINED>";
     }
 
+    public boolean isSafeForSink(Vulnerability vulnerability) {
+        return this.kind == UNCONTAMINATED || (this.kind == CONTAMINATED && this.decontaminated.contains(vulnerability));
+    }
     
     public void decontaminate() {
         if (this.kind != CONTAMINATED) {

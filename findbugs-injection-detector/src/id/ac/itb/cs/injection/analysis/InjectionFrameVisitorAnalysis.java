@@ -24,10 +24,8 @@ import edu.umd.cs.findbugs.SystemProperties;
 import edu.umd.cs.findbugs.ba.*;
 import edu.umd.cs.findbugs.ba.type.TypeDataflow;
 import edu.umd.cs.findbugs.ba.type.TypeFrame;
-import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
-import edu.umd.cs.findbugs.classfile.Global;
-import edu.umd.cs.findbugs.classfile.IAnalysisCache;
-import edu.umd.cs.findbugs.classfile.MethodDescriptor;
+import edu.umd.cs.findbugs.classfile.*;
+import id.ac.itb.cs.CleanerType;
 import id.ac.itb.cs.injection.database.CleanerProperty;
 import id.ac.itb.cs.injection.database.CleanerPropertyDatabase;
 import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
@@ -44,7 +42,8 @@ import java.util.Set;
 public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<InjectionValue, InjectionFrame> {
 
     private static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
-    
+    private static final boolean CHECK_FOR_ANNOTATION_FIRST = SystemProperties.getBoolean("inj.debug.annotation", true);
+
     private JavaClassAndMethod javaClassAndMethod;
 
     private CleanerPropertyDatabase cleanerPropertyDatabase;
@@ -103,7 +102,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             frame.popValue();
             InjectionValue object = frame.popValue();
             if (object.getKind() == InjectionValue.CONTAMINATED) {
-                InjectionValue pushValue = new InjectionValue(InjectionValue.CONTAMINATED);
+                InjectionValue pushValue = new InjectionValue(object);
                 pushValue.addSourceLineAnnotation(currentSourceLine());
                 frame.pushValue(pushValue);
             } else {
@@ -150,10 +149,12 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             try {
                 // StringBuilder Constructor
                 // Consume stack and then push parameter value to stack
-                InjectionValue param = frame.popValue(); // param
-                frame.popValue(); // object
-                frame.popValue(); // object (dup)
-                frame.pushValue(param);
+                InjectionValue param = frame.getStackValue(0);
+                InjectionValue pushValue = new InjectionValue(param);
+                if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
+                    pushValue.addSourceLineAnnotation(currentSourceLine());
+                }
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
             } catch (DataflowAnalysisException e) {
                 throw new InvalidBytecodeException("Not enough values on the stack", e);
             }
@@ -199,6 +200,9 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     InjectionValue param = frame.popValue();
                     InjectionValue object = frame.popValue();
                     InjectionValue pushValue = InjectionValue.merge(object, param);
+                    if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
+                        pushValue.addSourceLineAnnotation(currentSourceLine());
+                    }
                     frame.pushValue(pushValue);
                 } catch (DataflowAnalysisException e) {
                     throw new InvalidBytecodeException("Not enough values on the stack", e);
@@ -224,22 +228,57 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     public void handleInvokeInstruction(InvokeInstruction obj) {
         InjectionFrame frame  = getFrame();
         XMethod calledMethod = XFactory.createXMethod(obj, getCPG());
-        
+
         // Check for non-static method parameters
         if (!calledMethod.isStatic()) {
             
             // Check for InjectionValue.POSITIVE_VALIDATOR_RESULT_TYPE
-            InjectionValue referenceValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+            InjectionValue referenceValue;
             try {
                 referenceValue = frame.getValue(frame.getStackLocation(calledMethod.getNumParams()));
             } catch (DataflowAnalysisException e) {
                 throw new InvalidBytecodeException("Not enough values on the stack", e);
             }
-            
+
+            CleanerProperty cleanerProperty = referenceValue.getCleanerProperty();
+
             if (referenceValue.getKind() == InjectionValue.CONTAMINATED && referenceValue.isValidated() && !referenceValue.isDecontaminated()) {
                 // Push back referenceValue to stack
                 // Fix for java.util.regex.Matcher.matches()
-                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), referenceValue);
+                InjectionValue pushValue = new InjectionValue(referenceValue);
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
+                return;
+            } else if (cleanerProperty != null) {
+                // TODO: Field Validator
+
+                InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+
+                if (cleanerProperty.getCleanerType() == CleanerType.VALIDATOR) {
+                    if (DEBUG) {
+                        System.out.println("Called variable validator method");
+                    }
+
+                    try {
+                        for (int i = 0; i < calledMethod.getNumParams(); ++i) {
+                            InjectionValue param = frame.getStackValue(i);
+                            pushValue.meetWith(param);
+                        }
+                    } catch (DataflowAnalysisException e) {
+                        throw new InvalidBytecodeException("Not enough values on the stack", e);
+                    }
+
+                    if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
+                        pushValue.setValidated(cleanerProperty.getVulnerabilities());
+                    }
+                } else if  (cleanerProperty.getCleanerType() == CleanerType.SANITIZER) {
+                    if (DEBUG) {
+                        System.out.println("Called variable sanitizer method");
+                    }
+                } else {
+                    throw new IllegalStateException("Unknown cleaner variable");
+                }
+
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
                 return;
             } else {
                 checkReferenceObjectParameter(calledMethod);
@@ -254,7 +293,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             ReturnContaminatedValueProperty returnContaminatedValueProperty = returnContaminatedValuePropertyDatabase.getProperty(calledDescriptor);
             
             if (cleanerProperty != null) {
-                if (cleanerProperty.getKind() == CleanerProperty.VALIDATOR_TYPE) {
+                if (cleanerProperty.getCleanerType() == CleanerType.VALIDATOR) {
                     if (DEBUG) {
                         System.out.println("Called validator method: " + calledXMethod);
                     }
@@ -271,7 +310,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
                         pushValue.setValidated(cleanerProperty.getVulnerabilities());
                     }
-                } else if (cleanerProperty.getKind() == CleanerProperty.SANITIZER_TYPE) {
+                } else if (cleanerProperty.getCleanerType() == CleanerType.SANITIZER) {
                     if (DEBUG) {
                         System.out.println("Called sanitizer method: " + calledXMethod);
                     }
@@ -289,7 +328,9 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     pushValue.decontaminate();
                 }
             } else {
-                throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                if (CHECK_FOR_ANNOTATION_FIRST) {
+                    throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                }
             }
 
             if (returnContaminatedValueProperty != null) {
@@ -303,7 +344,9 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     pushValue.addSourceLineAnnotation(currentSourceLine());
                 }
             } else {
-                throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                if (CHECK_FOR_ANNOTATION_FIRST) {
+                    throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                }
             }
         }
         
@@ -382,17 +425,34 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     
     public void handleLoadFieldInstruction(FieldInstruction obj) {
         XField xField = XFactory.createXField(obj, cpg);
-        ReturnContaminatedValueProperty property = returnContaminatedValuePropertyDatabase.getProperty(xField.getFieldDescriptor());
+        FieldDescriptor descriptor = xField.getFieldDescriptor();
+
         InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
-        if (property != null) {
-            if (property.isContaminated()) {
+
+        ReturnContaminatedValueProperty rProperty = returnContaminatedValuePropertyDatabase.getProperty(descriptor);
+        if (rProperty != null) {
+            if (rProperty.isContaminated()) {
                 pushValue.setKind(InjectionValue.CONTAMINATED);
                 pushValue.setDirect(true);
                 pushValue.addSourceLineAnnotation(currentSourceLine());
             }
         } else {
-            throw new IllegalStateException("Load unknown field: " + xField);
+            if (CHECK_FOR_ANNOTATION_FIRST) {
+                throw new IllegalStateException("Load unknown field: " + xField);
+            }
         }
+
+        CleanerProperty cProperty = cleanerPropertyDatabase.getProperty(descriptor);
+        if (cProperty != null) {
+            if (cProperty.getCleanerType() != CleanerType.UNKNOWN) {
+                pushValue.setCleanerProperty(cProperty);
+            }
+        } else {
+            if (CHECK_FOR_ANNOTATION_FIRST) {
+                throw new IllegalStateException("Load unknown field: " + xField);
+            }
+        }
+
         getFrame().pushValue(pushValue);
     }
 
@@ -407,7 +467,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                 }
                 returnContaminatedValuePropertyDatabase.setProperty(xField.getFieldDescriptor(), property);
             } else {
-                // throw new IllegalStateException("Store to unknown field: " + xField);
+                throw new IllegalStateException("Store to unknown field: " + xField);
             }
         } catch (DataflowAnalysisException e) {
             throw new InvalidBytecodeException("Not enough values on the stack", e);

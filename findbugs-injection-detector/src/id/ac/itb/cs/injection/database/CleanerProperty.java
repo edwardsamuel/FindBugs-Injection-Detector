@@ -19,6 +19,7 @@
 
 package id.ac.itb.cs.injection.database;
 
+import id.ac.itb.cs.CleanerType;
 import id.ac.itb.cs.Vulnerability;
 
 import java.util.EnumSet;
@@ -29,31 +30,28 @@ import java.util.EnumSet;
  */
 public class CleanerProperty {
 
-    public static final int UNKNOWN_TYPE = 0;
-    public static final int VALIDATOR_TYPE = 1;
-    public static final int SANITIZER_TYPE = 2;
-    
-    private int kind;
+    private CleanerType cleanerType;
+
     public EnumSet<Vulnerability> vulnerabilities;
 
-    public CleanerProperty(int kind) {
+    public CleanerProperty(CleanerType cleanerType) {
         super();
-        this.kind = kind;
+        this.cleanerType = cleanerType;
         this.vulnerabilities = EnumSet.noneOf(Vulnerability.class);
     }
 
-    public CleanerProperty(int kind, EnumSet<Vulnerability> vulnerabilities) {
+    public CleanerProperty(CleanerType cleanerType, EnumSet<Vulnerability> vulnerabilities) {
         super();
-        this.kind = kind;
+        this.cleanerType = cleanerType;
         this.vulnerabilities = vulnerabilities;
     }
     
-    public int getKind() {
-        return kind;
+    public CleanerType getCleanerType() {
+        return cleanerType;
     }
 
-    public void setKind(int kind) {
-        this.kind = kind;
+    public void setCleanerType(CleanerType cleanerType) {
+        this.cleanerType = cleanerType;
     }
     
     public EnumSet<Vulnerability> getVulnerabilities() {
@@ -66,27 +64,15 @@ public class CleanerProperty {
 
     public String encode() {
         StringBuilder sb = new StringBuilder();
-        
-        switch (kind) {
-        case VALIDATOR_TYPE:
-            sb.append("validator");
-            break;
-        case SANITIZER_TYPE:
-            sb.append("sanitizer");
-            break;
-        default:
-            sb.append("unknown");
-            break;
-        }
-        
+        sb.append(cleanerType.toString());
         sb.append("|");
         
-        boolean firstVulnerabily = true;
+        boolean firstVulnerability = true;
         for (Vulnerability vulnerability : vulnerabilities) {
-            if (!firstVulnerabily) {
+            if (!firstVulnerability) {
                 sb.append(",");
             } else {
-                firstVulnerabily = false;
+                firstVulnerability = false;
             }
             
             sb.append(vulnerability.name());
@@ -100,12 +86,7 @@ public class CleanerProperty {
         String kindStr = encodedValue.substring(0, bar);
         String[] vulnerabilitiesStr = encodedValue.substring(bar + 1).split(",");
         
-        int kind = UNKNOWN_TYPE;
-        if ("validator".equals(kindStr)) {
-            kind = VALIDATOR_TYPE;
-        } else if ("sanitizer".equals(kindStr)) {
-            kind = SANITIZER_TYPE;
-        }
+        CleanerType kind = CleanerType.valueOf(kindStr);
         
         EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
         for (String str : vulnerabilitiesStr) {

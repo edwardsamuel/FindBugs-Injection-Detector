@@ -9,4 +9,8 @@
         <servlet-name>SqlDirectUse</servlet-name>
         <servlet-class>id.ac.itb.injection.test.SqlDirectUse</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SqlRegexFilter</servlet-name>
+        <servlet-class>id.ac.itb.cs.injection.test.SqlRegexFilter</servlet-class>
+    </servlet>
 </web-app>

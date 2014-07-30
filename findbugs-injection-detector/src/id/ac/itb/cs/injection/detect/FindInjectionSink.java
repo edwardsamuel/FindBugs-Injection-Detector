@@ -9,11 +9,15 @@ import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
 import edu.umd.cs.findbugs.classfile.Global;
 import edu.umd.cs.findbugs.classfile.IAnalysisCache;
 import edu.umd.cs.findbugs.classfile.MethodDescriptor;
+import edu.umd.cs.findbugs.util.ClassName;
 import id.ac.itb.cs.Vulnerability;
 import id.ac.itb.cs.injection.analysis.InjectionDataflow;
 import id.ac.itb.cs.injection.analysis.InjectionFrame;
 import id.ac.itb.cs.injection.analysis.InjectionValue;
-import id.ac.itb.cs.injection.database.*;
+import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
+import id.ac.itb.cs.injection.database.ReturnContaminatedValuePropertyDatabase;
+import id.ac.itb.cs.injection.database.SensitiveParameterProperty;
+import id.ac.itb.cs.injection.database.SensitiveParameterPropertyDatabase;
 import id.ac.itb.cs.injection.util.Util;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
@@ -133,7 +137,7 @@ public class FindInjectionSink implements Detector {
                                             BugInstance bug = new BugInstance(this, "INJ_SINK_CALLED", param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
                                             bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                             bug.addSourceLine(methodDescriptor, location);
-                                            for (SourceLineAnnotation sourceLineAnnotation : param.getAnnotations()) {
+                                            for (SourceLineAnnotation sourceLineAnnotation : param.getSourceLineAnnotations()) {
                                                 bug.addSourceLine(sourceLineAnnotation);
                                             }
                                             bug.addString(vulnerability.toString());
@@ -144,6 +148,13 @@ public class FindInjectionSink implements Detector {
                                     
                                     // Mark caller as sink, if the parameters are from arguments.
                                     for (int localIndex : param.getLocalSource()) {
+
+                                        // Cnly check argument from reference type (except reference type of primitive type)
+                                        String signature = typeFact.getValue(localIndex).getSignature();
+                                        if (signature.length() == 1 || ClassName.getPrimitiveType(signature) != null) {
+                                            continue;
+                                        }
+
                                         int argIndex = localIndex - callerShiftParams;
                                         if (argIndex < callerNumParams && argIndex > -1) {
                                             if (DEBUG) {
