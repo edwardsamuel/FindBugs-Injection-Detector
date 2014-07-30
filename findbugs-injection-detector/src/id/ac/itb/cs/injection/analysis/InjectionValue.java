@@ -72,15 +72,6 @@ public class InjectionValue {
     private EnumSet<Vulnerability> validated;
     
     public Object value;
-    
-    public InjectionValue() {
-        this.kind = TOP;
-        this.direct = false;
-        this.localSource = new HashSet<Integer>();
-        this.annotations = new HashSet<SourceLineAnnotation>();
-        this.validated = EnumSet.noneOf(Vulnerability.class);
-        this.decontaminated = EnumSet.noneOf(Vulnerability.class);
-    }
 
     public InjectionValue(int kind) {
         this.kind = kind;
@@ -264,16 +255,16 @@ public class InjectionValue {
     public String toString() {
         if (kind == CONTAMINATED) {
             if (!decontaminated.isEmpty()) {
-                return " D" + localSource.toString();
+                return "D";// + localSource.toString();
             } else if (!validated.isEmpty()) {
-                return " V" + localSource.toString();
+                return "V";// + localSource.toString();
             } else if (!direct) {
-                return " Y" + localSource.toString();
+                return "Y";// + localSource.toString();
             } else {
-                return " X" + localSource.toString();
+                return "X";// + localSource.toString();
             }
         } else if (kind == UNCONTAMINATED) {
-            return " U"  + localSource.toString();
+            return "U";//  + localSource.toString();
 //            if (value == null) {
 //                return "-";
 //            }

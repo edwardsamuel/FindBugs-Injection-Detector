@@ -9,6 +9,10 @@
 	<OrderingConstraints>
         <SplitPass>
             <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
+            <Later class="edu.umd.cs.findbugs.detect.TestDataflowAnalysis"/>
+        </SplitPass>
+        <SplitPass>
+            <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
             <Later class="id.ac.itb.cs.injection.detect.FindInjectionSink"/>
         </SplitPass>
 	</OrderingConstraints>

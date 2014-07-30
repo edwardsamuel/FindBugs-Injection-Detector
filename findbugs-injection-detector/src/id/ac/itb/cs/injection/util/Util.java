@@ -19,19 +19,14 @@
 
 package id.ac.itb.cs.injection.util;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import edu.umd.cs.findbugs.SystemProperties;
+import edu.umd.cs.findbugs.ba.*;
+import edu.umd.cs.findbugs.ba.type.TypeFrame;
 import org.apache.bcel.generic.ConstantPoolGen;
 import org.apache.bcel.generic.InvokeInstruction;
 
-import edu.umd.cs.findbugs.SystemProperties;
-import edu.umd.cs.findbugs.ba.DataflowAnalysisException;
-import edu.umd.cs.findbugs.ba.Hierarchy;
-import edu.umd.cs.findbugs.ba.JavaClassAndMethod;
-import edu.umd.cs.findbugs.ba.XFactory;
-import edu.umd.cs.findbugs.ba.XMethod;
-import edu.umd.cs.findbugs.ba.type.TypeFrame;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Edward Samuel
@@ -40,15 +35,14 @@ public abstract class Util {
 
     private static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
 
-    public static Set<XMethod> getCalledMethods(InvokeInstruction invokeInstruction, TypeFrame typeFrame, ConstantPoolGen cpg) {
+    public static Set<XMethod> getCalledXMethods(InvokeInstruction invokeInstruction, TypeFrame typeFrame, ConstantPoolGen cpg) {
         XMethod currentXMethod = XFactory.createXMethod(invokeInstruction, cpg);
         
         Set<XMethod> calledMethods = new HashSet<XMethod>();
-        calledMethods.add(currentXMethod);
         try {
-            Set<JavaClassAndMethod> targetMethodSet = Hierarchy.resolveMethodCallTargets(invokeInstruction, typeFrame, cpg);
-            for (JavaClassAndMethod m : targetMethodSet) {
-                calledMethods.add(XFactory.createXMethod(m));
+            Set<XMethod> targetMethodSet = Hierarchy2.resolveMethodCallTargets(invokeInstruction, typeFrame, cpg);
+            for (XMethod m : targetMethodSet) {
+                calledMethods.add(m);
             }
         } catch (ClassNotFoundException ex) {
             if (DEBUG) {
@@ -59,7 +53,8 @@ public abstract class Util {
                 System.out.println("Error while resolving method call targets of " + currentXMethod);
             }
         }
-        
+        calledMethods.add(currentXMethod);
+
         return calledMethods;
     }
     

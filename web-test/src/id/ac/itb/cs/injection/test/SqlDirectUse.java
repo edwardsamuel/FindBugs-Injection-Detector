@@ -1,6 +1,8 @@
-package id.ac.itb.injection.test;
+package id.ac.itb.cs.injection.test;
 
+import id.ac.itb.cs.Vulnerability;
 import id.ac.itb.cs.annotation.ReturnContaminated;
+import id.ac.itb.cs.annotation.SensitiveParameter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +19,8 @@ import java.sql.SQLException;
  * Created by Edward Samuel on 29/07/14.
  */
 public class SqlDirectUse extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+//    private static final long serialVersionUID = 1L;
+//
     public static final String url = "jdbc:mysql://localhost:3306/erlangga";
     public static final String user = "progin";
     public static final String password = "progin";
@@ -28,7 +30,6 @@ public class SqlDirectUse extends HttpServlet {
      */
     public SqlDirectUse() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -37,20 +38,26 @@ public class SqlDirectUse extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
 
-        String out = getUname(request);
+        String out = getServletName();
         // out = "Hasil : ";
         out += retreiveData(out);
         out += ":";
         // out += request.getParameter("uname");
 
         writer.write(out);
+
+        writer.write(getServletName());
+
+        writer.write(url);
+        writer.write(user);
+        writer.write(password);
     }
 
     public String getUname(HttpServletRequest request) {
         return request.getParameter("uname");
     }
 
-    public String retreiveData(String uname) {
+    public String retreiveData(@SensitiveParameter(vulnerabilities = {Vulnerability.XSS}) String uname) {
         Connection con = null;
         java.sql.Statement st = null;
         ResultSet rs = null;
@@ -87,7 +94,6 @@ public class SqlDirectUse extends HttpServlet {
 
         return null;
     }
-
 
     @Override
     @ReturnContaminated

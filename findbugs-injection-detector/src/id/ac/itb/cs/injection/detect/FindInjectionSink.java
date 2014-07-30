@@ -13,10 +13,7 @@ import id.ac.itb.cs.Vulnerability;
 import id.ac.itb.cs.injection.analysis.InjectionDataflow;
 import id.ac.itb.cs.injection.analysis.InjectionFrame;
 import id.ac.itb.cs.injection.analysis.InjectionValue;
-import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
-import id.ac.itb.cs.injection.database.ReturnContaminatedValuePropertyDatabase;
-import id.ac.itb.cs.injection.database.SensitiveParameterProperty;
-import id.ac.itb.cs.injection.database.SensitiveParameterPropertyDatabase;
+import id.ac.itb.cs.injection.database.*;
 import id.ac.itb.cs.injection.util.Util;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
@@ -29,6 +26,10 @@ public class FindInjectionSink implements Detector {
     
     private BugAccumulator bugAccumulator;
     private BugReporter bugReporter;
+
+    private ReturnContaminatedValuePropertyDatabase returnContaminatedValuePropertyDatabase;
+
+    private SensitiveParameterPropertyDatabase sensitiveParameterPropertyDatabase;
         
     public FindInjectionSink(BugReporter bugReporter) {
         this.bugReporter = bugReporter;
@@ -75,7 +76,12 @@ public class FindInjectionSink implements Detector {
         ConstantPoolGen cpg = methodGen.getConstantPool();
 
         IAnalysisCache analysisCache = Global.getAnalysisCache();
-        SensitiveParameterPropertyDatabase sensitiveParameterPropertyDatabase = analysisCache.getDatabase(SensitiveParameterPropertyDatabase.class);
+        if (returnContaminatedValuePropertyDatabase == null) {
+            returnContaminatedValuePropertyDatabase = analysisCache.getDatabase(ReturnContaminatedValuePropertyDatabase.class);
+        }
+        if (sensitiveParameterPropertyDatabase == null) {
+            sensitiveParameterPropertyDatabase = analysisCache.getDatabase(SensitiveParameterPropertyDatabase.class);
+        }
         InjectionDataflow injectionDataflow = analysisCache.getMethodAnalysis(InjectionDataflow.class, methodDescriptor);
 
         SensitiveParameterProperty callerSensitive = sensitiveParameterPropertyDatabase.getProperty(methodDescriptor);
@@ -99,7 +105,7 @@ public class FindInjectionSink implements Detector {
                     
                     TypeDataflow typeDataflow = Global.getAnalysisCache().getMethodAnalysis(TypeDataflow.class, methodDescriptor);
                     TypeFrame typeFact = typeDataflow.getFactAtLocation(location);
-                    Collection<XMethod> calledMethods = Util.getCalledMethods(invoke, typeFact, cpg);
+                    Collection<XMethod> calledMethods = Util.getCalledXMethods(invoke, typeFact, cpg);
                     
                     for (XMethod calledXMethod : calledMethods) {
                         MethodDescriptor calledDescriptor = calledXMethod.getMethodDescriptor();

@@ -288,7 +288,11 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     pushValue.setValidated(cleanerProperty.getVulnerabilities());
                     pushValue.decontaminate();
                 }
-            } else if (returnContaminatedValueProperty != null) {
+            } else {
+                throw new IllegalStateException("Called stranger method: " + calledXMethod);
+            }
+
+            if (returnContaminatedValueProperty != null) {
                 if (returnContaminatedValueProperty.isContaminated()) {
                     if (DEBUG) {
                         System.out.println("Called return contaminated data method: " + calledXMethod);
@@ -299,7 +303,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     pushValue.addSourceLineAnnotation(currentSourceLine());
                 }
             } else {
-                // throw new IllegalStateException("Called stranger method: " + calledXMethod);
+                throw new IllegalStateException("Called stranger method: " + calledXMethod);
             }
         }
         
@@ -324,7 +328,7 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
         } catch (CheckedAnalysisException e) {
             throw new InvalidBytecodeException("Error while analyze " + method + " for Type Dataflow", e);
         }
-        return Util.getCalledMethods(obj, typeFrame, cpg);
+        return Util.getCalledXMethods(obj, typeFrame, cpg);
     }
 
     /**
@@ -377,10 +381,17 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     }
     
     public void handleLoadFieldInstruction(FieldInstruction obj) {
-        ReturnContaminatedValueProperty property = returnContaminatedValuePropertyDatabase.getProperty(XFactory.createXField(obj, cpg).getFieldDescriptor());
+        XField xField = XFactory.createXField(obj, cpg);
+        ReturnContaminatedValueProperty property = returnContaminatedValuePropertyDatabase.getProperty(xField.getFieldDescriptor());
         InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
-        if (property != null && property.isContaminated()) {
-            pushValue.setKind(InjectionValue.CONTAMINATED);
+        if (property != null) {
+            if (property.isContaminated()) {
+                pushValue.setKind(InjectionValue.CONTAMINATED);
+                pushValue.setDirect(true);
+                pushValue.addSourceLineAnnotation(currentSourceLine());
+            }
+        } else {
+            throw new IllegalStateException("Load unknown field: " + xField);
         }
         getFrame().pushValue(pushValue);
     }
@@ -388,11 +399,16 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     public void handleStoreFieldInstruction(FieldInstruction obj) {
         try {
             InjectionValue object = getFrame().popValue();
-            ReturnContaminatedValueProperty property =  returnContaminatedValuePropertyDatabase.getProperty(XFactory.createXField(obj, cpg).getFieldDescriptor());
-            if (object.getKind() == InjectionValue.CONTAMINATED) {
-                property.setContaminated(true);
+            XField xField = XFactory.createXField(obj, cpg);
+            ReturnContaminatedValueProperty property =  returnContaminatedValuePropertyDatabase.getProperty(xField.getFieldDescriptor());
+            if (property != null) {
+                if (object.getKind() == InjectionValue.CONTAMINATED) {
+                    property.setContaminated(true);
+                }
+                returnContaminatedValuePropertyDatabase.setProperty(xField.getFieldDescriptor(), property);
+            } else {
+                // throw new IllegalStateException("Store to unknown field: " + xField);
             }
-            returnContaminatedValuePropertyDatabase.setProperty(XFactory.createXField(obj, cpg).getFieldDescriptor(), property);
         } catch (DataflowAnalysisException e) {
             throw new InvalidBytecodeException("Not enough values on the stack", e);
         }

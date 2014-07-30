@@ -29,7 +29,7 @@ import java.util.EnumSet;
  */
 public class CleanerProperty {
 
-    public static final int UNKOWN_TYPE = 0;
+    public static final int UNKNOWN_TYPE = 0;
     public static final int VALIDATOR_TYPE = 1;
     public static final int SANITIZER_TYPE = 2;
     
@@ -100,7 +100,7 @@ public class CleanerProperty {
         String kindStr = encodedValue.substring(0, bar);
         String[] vulnerabilitiesStr = encodedValue.substring(bar + 1).split(",");
         
-        int kind = UNKOWN_TYPE;
+        int kind = UNKNOWN_TYPE;
         if ("validator".equals(kindStr)) {
             kind = VALIDATOR_TYPE;
         } else if ("sanitizer".equals(kindStr)) {
