@@ -54,4 +54,6 @@
     <BugPattern abbrev="INJ" type="INJ_ARG_REMOTE_FILE_INCLUSION" category="SECURITY" />
     <BugPattern abbrev="INJ" type="INJ_ARG_PATH_TRAVERSAL" category="SECURITY" />
 
+    <BugPattern abbrev="INJ" type="INJ_RETURN_CONTAMINATED" category="SECURITY" />
+
 </FindbugsPlugin>

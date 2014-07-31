@@ -90,6 +90,7 @@ public class FindInjectionSink implements Detector {
         SensitiveParameterProperty callerSensitive = sensitiveParameterPropertyDatabase.getProperty(methodDescriptor);
         
         List<Location> returnLocations = new ArrayList<Location>();
+        List<InstructionHandle> returnHandles = new ArrayList<InstructionHandle>();
 
         for (Iterator<BasicBlock> blockIter = cfg.blockIterator(); blockIter.hasNext();) {
             BasicBlock block = blockIter.next();
@@ -194,6 +195,7 @@ public class FindInjectionSink implements Detector {
                 if (lastInstruction instanceof ReturnInstruction && lastInstruction instanceof ARETURN) {
                     Location returnLocation = new Location(lastHandle, block);
                     returnLocations.add(returnLocation);
+                    returnHandles.add(lastHandle);
                 }
             }
         }
@@ -201,7 +203,10 @@ public class FindInjectionSink implements Detector {
         // Check for contaminated value on each return locations
         ReturnContaminatedValuePropertyDatabase returnContaminatedValuePropertyDatabase = analysisCache.getDatabase(ReturnContaminatedValuePropertyDatabase.class);
         ReturnContaminatedValueProperty returnContaminatedValueProperty = returnContaminatedValuePropertyDatabase.getProperty(methodDescriptor);
-        for (Location returnLocation : returnLocations) {
+        for (int i = 0, len = returnLocations.size(); i < len; i++) {
+            Location returnLocation = returnLocations.get(i);
+            InstructionHandle returnHandle = returnHandles.get(i);
+
             InjectionFrame frame = injectionDataflow.getFactAtLocation(returnLocation);
             InjectionValue returnValue = frame.getStackValue(0);
             
@@ -211,6 +216,16 @@ public class FindInjectionSink implements Detector {
                 }
                 
                 returnContaminatedValueProperty.setContaminated(true);
+
+                if (DEBUG) {
+                    BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", returnValue.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+                    bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
+                    bug.addSourceLine(methodDescriptor, returnLocation);
+                    for (SourceLineAnnotation sourceLineAnnotation : returnValue.getSourceLineAnnotations()) {
+                        bug.addSourceLine(sourceLineAnnotation);
+                    }
+                    bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), returnHandle));
+                }
             }
         }
         returnContaminatedValuePropertyDatabase.setProperty(methodDescriptor, returnContaminatedValueProperty);

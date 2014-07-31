@@ -303,6 +303,16 @@
         </Details>
     </BugPattern>
 
+    <BugPattern type="INJ_RETURN_CONTAMINATED">
+        <ShortDescription>Return Contaminated (for debugging)</ShortDescription>
+        <LongDescription>{1} returns user contaminated value.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This method returns user contaminated value.</p>
+            ]]>
+        </Details>
+    </BugPattern>
+
 
 	<!-- Bug codes -->
 	<BugCode abbrev="INJ">Injection</BugCode>
