@@ -141,20 +141,25 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
         
         String className = obj.getReferenceType(cpg).toString();
         String methodName = obj.getName(cpg);
-        String methodSig = obj.getSignature(cpg);
-        
-        if ("java.lang.StringBuilder".equals(className)
-                && "<init>".equals(methodName)
-                && "(Ljava/lang/String;)V".equals(methodSig)) {
+        // String methodSig = obj.getSignature(cpg);
+
+        if (("java.lang.StringBuilder".equals(className) || "java.lang.StringBuffer".equals(className) || "java.lang.String".equals(className))
+                && "<init>".equals(methodName)) {
             try {
                 // StringBuilder Constructor
                 // Consume stack and then push parameter value to stack
-                InjectionValue param = frame.getStackValue(0);
-                InjectionValue pushValue = new InjectionValue(param);
+                InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+
+                for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
+                    pushValue.meetWith(frame.getStackValue(i));
+                }
+
                 if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
                     pushValue.addSourceLineAnnotation(currentSourceLine());
                 }
+
                 modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
+                return;
             } catch (DataflowAnalysisException e) {
                 throw new InvalidBytecodeException("Not enough values on the stack", e);
             }
@@ -165,68 +170,35 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     
     @Override
     public void visitINVOKESTATIC(INVOKESTATIC obj) {
-        InjectionFrame frame = getFrame();
-        
-        String className = obj.getReferenceType(cpg).toString();
-        String methodName = obj.getName(cpg);
-        // String methodSig = obj.getSignature(cpg);
-        
-        if ("java.lang.String".equals(className)
-                && "valueOf".equals(methodName)) {
-            try {
-                InjectionValue pushValue = new InjectionValue(frame.getStackValue(0));
-                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
-            } catch (DataflowAnalysisException e) {
-                throw new InvalidBytecodeException("Not enough values on the stack", e);
-            }
-        } else {
-            handleInvokeInstruction(obj);
-        }
+        handleInvokeInstruction(obj);
     }
 
     @Override
     public void visitINVOKEVIRTUAL(INVOKEVIRTUAL obj) {
-        InjectionFrame frame = getFrame();
-        
-        String className = obj.getReferenceType(cpg).toString();
-        String methodName = obj.getName(cpg);
-        // String methodSig = obj.getSignature(cpg);
-        
-        if ("java.lang.StringBuilder".equals(className) || "java.lang.StringBuffer".equals(className)) {
-            if ("append".equals(methodName)) {
-                // StringBuilder append
-                // Consume stack and then push new value to stack
-                try {
-                    InjectionValue pushValue = new InjectionValue(frame.getStackValue(getNumWordsConsumed(obj) - 1));
-                    for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
-                        pushValue.meetWith(frame.getStackValue(i));
-                    }
-
-                    if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
-                        pushValue.addSourceLineAnnotation(currentSourceLine());
-                    }
-
-                    modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
-                } catch (DataflowAnalysisException e) {
-                    throw new InvalidBytecodeException("Not enough values on the stack", e);
-                }
-            } else if ("toString".equals(obj.getName(cpg)) && "()Ljava/lang/String;".equals(obj.getSignature(cpg))) {
-                // StringBuilder toString
-                // Consume stack and then push same value to stack
-                try {
-                    InjectionValue pushValue = new InjectionValue(frame.getStackValue(0));
-                    modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
-                } catch (DataflowAnalysisException e) {
-                    throw new InvalidBytecodeException("Not enough values on the stack", e);
-                }
-            } else {
-                handleInvokeInstruction(obj);
-            }
-        } else {
-            handleInvokeInstruction(obj);
-        }
+        handleInvokeInstruction(obj);
     }
 
+    public void modelStringManipulationInstruction(InvokeInstruction obj) {
+        InjectionFrame frame = getFrame();
+        try {
+            InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+
+            Type returnType = obj.getReturnType(cpg);
+            if (returnType instanceof ReferenceType) {
+                for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
+                    pushValue.meetWith(frame.getStackValue(i));
+                }
+
+                if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
+                    pushValue.addSourceLineAnnotation(currentSourceLine());
+                }
+            }
+
+            modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
+        } catch (DataflowAnalysisException e) {
+            throw new InvalidBytecodeException("Not enough values on the stack", e);
+        }
+    }
 
     /**
      * Handle normal invoke instruction.
@@ -235,6 +207,13 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
      */
     public void handleInvokeInstruction(InvokeInstruction obj) {
         InjectionFrame frame  = getFrame();
+
+        String className = obj.getReferenceType(cpg).toString();
+        if ("java.lang.StringBuilder".equals(className) || "java.lang.StringBuffer".equals(className) || "java.lang.String".equals(className)) {
+            modelStringManipulationInstruction(obj);
+            return;
+        }
+
         XMethod calledMethod = XFactory.createXMethod(obj, getCPG());
 
         // Check for non-static method parameters
@@ -478,7 +457,9 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                 }
                 returnContaminatedValuePropertyDatabase.setProperty(xField.getFieldDescriptor(), property);
             } else {
-                throw new IllegalStateException("Store to unknown field: " + xField);
+                if (CHECK_FOR_ANNOTATION_FIRST) {
+                    throw new IllegalStateException("Store to unknown field: " + xField);
+                }
             }
 
             modelNormalInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj));

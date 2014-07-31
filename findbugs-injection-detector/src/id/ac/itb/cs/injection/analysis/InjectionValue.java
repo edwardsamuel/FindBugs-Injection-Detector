@@ -99,26 +99,27 @@ public class InjectionValue {
     }
     
     public void meetWith(@Nonnull InjectionValue other) {
-        if (this.kind < other.kind) {
-            this.kind = other.kind;
+        if (this.kind == UNCONTAMINATED && other.kind == CONTAMINATED) {
+            this.kind = CONTAMINATED;
+            this.direct |= other.direct;
             this.sourceLineAnnotations = new HashSet<SourceLineAnnotation>(other.sourceLineAnnotations);
-        } else if (this.kind == other.kind && this.kind == CONTAMINATED) {
+            this.localSource = new HashSet<Integer>(other.localSource);
+            this.validated.addAll(other.validated);
+            this.decontaminated.addAll(other.decontaminated);
+        } else if (this.kind == CONTAMINATED && other.kind == UNCONTAMINATED) {
+            this.kind = CONTAMINATED;
+            this.direct |= other.direct;
+        } else if (this.kind == CONTAMINATED && this.kind == CONTAMINATED) {
             this.sourceLineAnnotations.addAll(other.sourceLineAnnotations);
             this.direct |= other.direct;
             this.localSource.addAll(other.localSource);
             this.validated.retainAll(other.validated);
             this.decontaminated.retainAll(other.decontaminated);
-
-            this.value = other.value;
-            return;
         }
 
-        this.direct |= other.direct;
-        this.localSource.addAll(other.localSource);
-        this.validated.addAll(other.validated);
-        this.decontaminated.addAll(other.decontaminated);
-        this.cleanerProperty = other.cleanerProperty;
-
+        if (this.cleanerProperty == null) {
+            this.cleanerProperty = other.cleanerProperty;
+        }
         this.value = other.value;
     }
 
