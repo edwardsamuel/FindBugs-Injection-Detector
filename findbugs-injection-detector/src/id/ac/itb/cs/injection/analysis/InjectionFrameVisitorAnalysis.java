@@ -174,8 +174,8 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
         if ("java.lang.String".equals(className)
                 && "valueOf".equals(methodName)) {
             try {
-                InjectionValue param = frame.popValue();
-                frame.pushValue(param);
+                InjectionValue pushValue = new InjectionValue(frame.getStackValue(0));
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
             } catch (DataflowAnalysisException e) {
                 throw new InvalidBytecodeException("Not enough values on the stack", e);
             }
@@ -197,13 +197,16 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                 // StringBuilder append
                 // Consume stack and then push new value to stack
                 try {
-                    InjectionValue param = frame.popValue();
-                    InjectionValue object = frame.popValue();
-                    InjectionValue pushValue = InjectionValue.merge(object, param);
+                    InjectionValue pushValue = new InjectionValue(frame.getStackValue(getNumWordsConsumed(obj) - 1));
+                    for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
+                        pushValue.meetWith(frame.getStackValue(i));
+                    }
+
                     if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
                         pushValue.addSourceLineAnnotation(currentSourceLine());
                     }
-                    frame.pushValue(pushValue);
+
+                    modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
                 } catch (DataflowAnalysisException e) {
                     throw new InvalidBytecodeException("Not enough values on the stack", e);
                 }
@@ -211,8 +214,8 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                 // StringBuilder toString
                 // Consume stack and then push same value to stack
                 try {
-                    InjectionValue object = frame.popValue();
-                    frame.pushValue(object);
+                    InjectionValue pushValue = new InjectionValue(frame.getStackValue(0));
+                    modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
                 } catch (DataflowAnalysisException e) {
                     throw new InvalidBytecodeException("Not enough values on the stack", e);
                 }
@@ -453,12 +456,15 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             }
         }
 
-        getFrame().pushValue(pushValue);
+        modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
     }
 
     public void handleStoreFieldInstruction(FieldInstruction obj) {
+        InjectionFrame frame = getFrame();
+
         try {
-            InjectionValue object = getFrame().popValue();
+            InjectionValue object = frame.getStackValue(0);
+
             XField xField = XFactory.createXField(obj, cpg);
             ReturnContaminatedValueProperty property =  returnContaminatedValuePropertyDatabase.getProperty(xField.getFieldDescriptor());
             if (property != null) {
@@ -469,6 +475,8 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             } else {
                 throw new IllegalStateException("Store to unknown field: " + xField);
             }
+
+            modelNormalInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj));
         } catch (DataflowAnalysisException e) {
             throw new InvalidBytecodeException("Not enough values on the stack", e);
         }
