@@ -32,7 +32,7 @@
 
 	<!-- Bug patterns -->
     <BugPattern type="INJ_SQL_INJECTION">
-        <ShortDescription>User input passed into SQL query can cause SQL injection.</ShortDescription>
+        <ShortDescription>SQL Injection</ShortDescription>
         <LongDescription>{1} executes SQL query from user contaminated value that can cause SQL injection</LongDescription>
         <Details>
             <![CDATA[
@@ -48,7 +48,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_COMMAND_INJECTION">
-        <ShortDescription>Execute command or shell from user input.</ShortDescription>
+        <ShortDescription>Command Injection</ShortDescription>
         <LongDescription>{1} executes command (shell) from user contaminated value that can cause command/shell injection</LongDescription>
         <Details>
             <![CDATA[
@@ -61,7 +61,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_XPATH_INJECTION">
-        <ShortDescription>Execute XPath query from user input.</ShortDescription>
+        <ShortDescription>XPath Injection</ShortDescription>
         <LongDescription>{1} executes XPath query from user contaminated value that can cause XPath injection</LongDescription>
         <Details>
             <![CDATA[
@@ -74,7 +74,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_LDAP_INJECTION">
-        <ShortDescription>Execute LDAP query from user input.</ShortDescription>
+        <ShortDescription>LDAP Injection</ShortDescription>
         <LongDescription>{1} executes LDAP query from user contaminated value that can cause LDAP injection</LongDescription>
         <Details>
             <![CDATA[
@@ -88,7 +88,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_XSS">
-        <ShortDescription>Write to servlet output (directly) from user contaminated input.</ShortDescription>
+        <ShortDescription>Cross-Site Scripting (XSS)</ShortDescription>
         <LongDescription>{1} writes to servlet output (directly) from user contaminated input can cause XSS.</LongDescription>
         <Details>
             <![CDATA[
@@ -101,7 +101,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_UNVALIDATED_REDIRECT">
-        <ShortDescription>Write HTTP redirect information from user contaminated input.</ShortDescription>
+        <ShortDescription>Unvalidated Redirect</ShortDescription>
         <LongDescription>{1} Write HTTP redirect information from user contaminated input can cause unvalidated redirect.</LongDescription>
         <Details>
             <![CDATA[
@@ -114,7 +114,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_HTTP_RESPONSE_SPLITTING">
-        <ShortDescription>Write to HTTP header using user contaminated input.</ShortDescription>
+        <ShortDescription>HTTP Response Splitting</ShortDescription>
         <LongDescription>{1} writes to HTTP header using user contaminated input. can cause unvalidated redirect.</LongDescription>
         <Details>
             <![CDATA[
@@ -127,7 +127,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_UNVALIDATED_FORWARD">
-        <ShortDescription>Forward HTTP request to user contaminated input URL.</ShortDescription>
+        <ShortDescription>Unvalidated Forward</ShortDescription>
         <LongDescription>{1} forwards HTTP request to user contaminated input URL can cause unvalidated forward.</LongDescription>
         <Details>
             <![CDATA[
@@ -140,7 +140,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_REMOTE_FILE_INCLUSION">
-        <ShortDescription>Include file from user contaminated input URL.</ShortDescription>
+        <ShortDescription>Remote File Inclusion</ShortDescription>
         <LongDescription>{1} includes file from user contaminated input URL can cause remote file inclusion.</LongDescription>
         <Details>
             <![CDATA[
@@ -153,7 +153,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_PATH_TRAVERSAL">
-        <ShortDescription>Load file or directory from user input.</ShortDescription>
+        <ShortDescription>Path Traversal</ShortDescription>
         <LongDescription>{1} load file or directory from user input that can cause path traversal.</LongDescription>
         <Details>
             <![CDATA[
@@ -170,7 +170,7 @@
 
 
     <BugPattern type="INJ_ARG_SQL_INJECTION">
-        <ShortDescription>method parameter passed into SQL query can introduce SQL injection.</ShortDescription>
+        <ShortDescription>SQL Injection (Introduce)</ShortDescription>
         <LongDescription>{1} executes SQL query from method parameter value that can introduce SQL injection</LongDescription>
         <Details>
             <![CDATA[
@@ -186,7 +186,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_COMMAND_INJECTION">
-        <ShortDescription>Execute command or shell from method parameter.</ShortDescription>
+        <ShortDescription>Command Injection (Introduce)</ShortDescription>
         <LongDescription>{1} executes command (shell) from method parameter value that can introduce command/shell injection</LongDescription>
         <Details>
             <![CDATA[
@@ -199,7 +199,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_XPATH_INJECTION">
-        <ShortDescription>Execute XPath query from method parameter.</ShortDescription>
+        <ShortDescription>XPath Injection (Introduce)</ShortDescription>
         <LongDescription>{1} executes XPath query from method parameter value that can introduce XPath injection</LongDescription>
         <Details>
             <![CDATA[
@@ -212,7 +212,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_LDAP_INJECTION">
-        <ShortDescription>Execute LDAP query from method parameter.</ShortDescription>
+        <ShortDescription>LDAP Injection (Introduce)</ShortDescription>
         <LongDescription>{1} executes LDAP query from method parameter value that can introduce LDAP injection</LongDescription>
         <Details>
             <![CDATA[
@@ -226,7 +226,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_XSS">
-        <ShortDescription>Write to servlet output (directly) from method parameter input.</ShortDescription>
+        <ShortDescription>Cross-Site Scripting (XSS) (Introduce)</ShortDescription>
         <LongDescription>{1} writes to servlet output (directly) from method parameter input can introduce XSS.</LongDescription>
         <Details>
             <![CDATA[
@@ -239,7 +239,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_UNVALIDATED_REDIRECT">
-        <ShortDescription>Write HTTP redirect information from method parameter input.</ShortDescription>
+        <ShortDescription>Unvalidated Redirect (Introduce)</ShortDescription>
         <LongDescription>{1} Write HTTP redirect information from method parameter input can introduce unvalidated redirect.</LongDescription>
         <Details>
             <![CDATA[
@@ -252,7 +252,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_HTTP_RESPONSE_SPLITTING">
-        <ShortDescription>Write to HTTP header using method parameter input.</ShortDescription>
+        <ShortDescription>HTTP Response Splitting (Introduce)</ShortDescription>
         <LongDescription>{1} writes to HTTP header using method parameter input. can introduce unvalidated redirect.</LongDescription>
         <Details>
             <![CDATA[
@@ -265,7 +265,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_UNVALIDATED_FORWARD">
-        <ShortDescription>Forward HTTP request to method parameter input URL.</ShortDescription>
+        <ShortDescription>Unvalidated Forward (Introduce)</ShortDescription>
         <LongDescription>{1} forwards HTTP request to method parameter input URL can introduce unvalidated forward.</LongDescription>
         <Details>
             <![CDATA[
@@ -278,7 +278,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_REMOTE_FILE_INCLUSION">
-        <ShortDescription>Include file from method parameter input URL.</ShortDescription>
+        <ShortDescription>Remote File Inclusion (Introduce)</ShortDescription>
         <LongDescription>{1} includes file from method parameter input URL can introduce remote file inclusion.</LongDescription>
         <Details>
             <![CDATA[
@@ -291,7 +291,7 @@
     </BugPattern>
 
     <BugPattern type="INJ_ARG_PATH_TRAVERSAL">
-        <ShortDescription>Load file or directory from method parameter.</ShortDescription>
+        <ShortDescription>Path Traversal (Introduce)</ShortDescription>
         <LongDescription>{1} load file or directory from method parameter that can introduce path traversal.</LongDescription>
         <Details>
             <![CDATA[
@@ -302,9 +302,7 @@
             ]]>
         </Details>
     </BugPattern>
-    
-    
-    
+
 
 	<!-- Bug codes -->
 	<BugCode abbrev="INJ">Injection</BugCode>
