@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-	Messages file for demo plugin
-
-	Written by David Hovemeyer	
-	This code is in the public domain
--->
-
 <MessageCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:noNamespaceSchemaLocation="messagecollection.xsd">
 
@@ -15,7 +8,7 @@
 		<ShortDescription>Injection detector plugin</ShortDescription>
 		<Details>
 			<![CDATA[
-			    <p>This plugin find injection sink and check for its parameters for contamination of user input.</p>
+			    <p>This plugin finds injection sink and check for its parameters for contamination of user input.</p>
 			]]>
 		</Details>
 	</Plugin>
@@ -24,7 +17,7 @@
     <Detector class="id.ac.itb.cs.injection.detect.CheckAnnotation">
         <Details>
             <![CDATA[
-	            <p>This detector check for user annotation.</p>
+	            <p>This detector checks for user annotation.</p>
             ]]>
         </Details>
     </Detector>
@@ -32,22 +25,287 @@
     <Detector class="id.ac.itb.cs.injection.detect.FindInjectionSink">
         <Details>
             <![CDATA[
-	            <p>This detector find injection sink and check for user contaminated input.</p>
+	            <p>This detector finds injection sink and check for user contaminated input.</p>
             ]]>
         </Details>
     </Detector>
 
 	<!-- Bug patterns -->
-    <BugPattern type="INJ_SINK_CALLED">
-        <ShortDescription>Sink Called</ShortDescription>
-        <LongDescription>Called sink method {1}.</LongDescription>
+    <BugPattern type="INJ_SQL_INJECTION">
+        <ShortDescription>User input passed into SQL query can cause SQL injection.</ShortDescription>
+        <LongDescription>{1} executes SQL query from user contaminated value that can cause SQL injection</LongDescription>
         <Details>
             <![CDATA[
-                <p>A sink called.</p>
+                <p>This code execute SQL query from user contaminated value.
+                Injected value can read sensitive data from the database, modify database data (Insert/Update/Delete),
+                execute administration operations on the database (such as shutdown the DBMS),
+                recover the content of a given file present on the DBMS file system and
+                in some cases issue commands to the operating system</p>
+                <p>See <a href="https://www.owasp.org/index.php/SQL_Injection">SQL Injection on OWASP</a> for more
+                details and preventions.
             ]]>
         </Details>
     </BugPattern>
-	
+
+    <BugPattern type="INJ_COMMAND_INJECTION">
+        <ShortDescription>Execute command or shell from user input.</ShortDescription>
+        <LongDescription>{1} executes command (shell) from user contaminated value that can cause command/shell injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute command/shell from user contaminated value.
+                Injected value can execute arbitrary commands on the host operating system via a vulnerable application.</p>
+                <p>See <a href="https://www.owasp.org/index.php/Command_Injection">Command Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_XPATH_INJECTION">
+        <ShortDescription>Execute XPath query from user input.</ShortDescription>
+        <LongDescription>{1} executes XPath query from user contaminated value that can cause XPath injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute XPath query from user contaminated value.
+                Injected value can read sensitive data from the XML data./p>
+                <p>See <a href="https://www.owasp.org/index.php/XPATH_Injection">XPath Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_LDAP_INJECTION">
+        <ShortDescription>Execute LDAP query from user input.</ShortDescription>
+        <LongDescription>{1} executes LDAP query from user contaminated value that can cause LDAP injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute LDAP query from user contaminated value.
+                Injected value can execution of arbitrary commands such as granting permissions to unauthorized queries,
+                and content modification inside the LDAP tree./p>
+                <p>See <a href="https://www.owasp.org/index.php/LDAP_injection">LDAP Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_XSS">
+        <ShortDescription>Write to servlet output (directly) from user contaminated input.</ShortDescription>
+        <LongDescription>{1} writes to servlet output (directly) from user contaminated input can cause XSS.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write to servlet output (directly) from user contaminated input can cause Cross-Site Scripting (XSS).
+                Injected value can be used to send a malicious script to an unsuspecting user./p>
+                <p>See <a href="https://www.owasp.org/index.php/XSS">XSS on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_UNVALIDATED_REDIRECT">
+        <ShortDescription>Write HTTP redirect information from user contaminated input.</ShortDescription>
+        <LongDescription>{1} Write HTTP redirect information from user contaminated input can cause unvalidated redirect.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write HTTP redirect information from user contaminated input can cause unvalidated redirect.
+                Injected value can attempt to install malware or trick victims into disclosing passwords or other sensitive information./p>
+                <p>See <a href="https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards">Unvalidated Redirects and Forwards on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_HTTP_RESPONSE_SPLITTING">
+        <ShortDescription>Write to HTTP header using user contaminated input.</ShortDescription>
+        <LongDescription>{1} writes to HTTP header using user contaminated input. can cause unvalidated redirect.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write to HTTP header using user contaminated input. can cause unvalidated redirect.
+                Injected value can attempt to install malware or trick victims into disclosing passwords or other sensitive information./p>
+                <p>See <a href="https://www.owasp.org/index.php/HTTP_Response_Splitting">HTTP Response Splitting on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_UNVALIDATED_FORWARD">
+        <ShortDescription>Forward HTTP request to user contaminated input URL.</ShortDescription>
+        <LongDescription>{1} forwards HTTP request to user contaminated input URL can cause unvalidated forward.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code forward HTTP request to user contaminated input URL can cause unvalidated forward.
+                Injected value can attempt to install malware, or trick victims into disclosing passwords or other sensitive information, or allow access control bypass./p>
+                <p>See <a href="https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards">Unvalidated Redirects and Forwards on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_REMOTE_FILE_INCLUSION">
+        <ShortDescription>Include file from user contaminated input URL.</ShortDescription>
+        <LongDescription>{1} includes file from user contaminated input URL can cause remote file inclusion.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code include file from user contaminated input URL can cause remote file inclusion.
+                Injected value can allow access control bypass./p>
+                <p>See <a href="http://en.wikipedia.org/wiki/Remote_File_Inclusion">Remote File Inclusion on Wikipedia</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_PATH_TRAVERSAL">
+        <ShortDescription>Load file or directory from user input.</ShortDescription>
+        <LongDescription>{1} load file or directory from user input that can cause path traversal.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code load file or directory from user input.
+                Injected value can browse unauthorized access to file or directory./p>
+                <p>See <a href="https://www.owasp.org/index.php/Path_Traversal">Path_Traversal on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+
+
+
+
+    <BugPattern type="INJ_ARG_SQL_INJECTION">
+        <ShortDescription>method parameter passed into SQL query can introduce SQL injection.</ShortDescription>
+        <LongDescription>{1} executes SQL query from method parameter value that can introduce SQL injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute SQL query from method parameter value.
+                Injected value can read sensitive data from the database, modify database data (Insert/Update/Delete),
+                execute administration operations on the database (such as shutdown the DBMS),
+                recover the content of a given file present on the DBMS file system and
+                in some cases issue commands to the operating system</p>
+                <p>See <a href="https://www.owasp.org/index.php/SQL_Injection">SQL Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_COMMAND_INJECTION">
+        <ShortDescription>Execute command or shell from method parameter.</ShortDescription>
+        <LongDescription>{1} executes command (shell) from method parameter value that can introduce command/shell injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute command/shell from method parameter value.
+                Injected value can execute arbitrary commands on the host operating system via a vulnerable application.</p>
+                <p>See <a href="https://www.owasp.org/index.php/Command_Injection">Command Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_XPATH_INJECTION">
+        <ShortDescription>Execute XPath query from method parameter.</ShortDescription>
+        <LongDescription>{1} executes XPath query from method parameter value that can introduce XPath injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute XPath query from method parameter value.
+                Injected value can read sensitive data from the XML data./p>
+                <p>See <a href="https://www.owasp.org/index.php/XPATH_Injection">XPath Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_LDAP_INJECTION">
+        <ShortDescription>Execute LDAP query from method parameter.</ShortDescription>
+        <LongDescription>{1} executes LDAP query from method parameter value that can introduce LDAP injection</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code execute LDAP query from method parameter value.
+                Injected value can execution of arbitrary commands such as granting permissions to unauthorized queries,
+                and content modification inside the LDAP tree./p>
+                <p>See <a href="https://www.owasp.org/index.php/LDAP_injection">LDAP Injection on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_XSS">
+        <ShortDescription>Write to servlet output (directly) from method parameter input.</ShortDescription>
+        <LongDescription>{1} writes to servlet output (directly) from method parameter input can introduce XSS.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write to servlet output (directly) from method parameter input can introduce Cross-Site Scripting (XSS).
+                Injected value can be used to send a malicious script to an unsuspecting user./p>
+                <p>See <a href="https://www.owasp.org/index.php/XSS">XSS on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_UNVALIDATED_REDIRECT">
+        <ShortDescription>Write HTTP redirect information from method parameter input.</ShortDescription>
+        <LongDescription>{1} Write HTTP redirect information from method parameter input can introduce unvalidated redirect.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write HTTP redirect information from method parameter input can introduce unvalidated redirect.
+                Injected value can attempt to install malware or trick victims into disclosing passwords or other sensitive information./p>
+                <p>See <a href="https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards">Unvalidated Redirects and Forwards on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_HTTP_RESPONSE_SPLITTING">
+        <ShortDescription>Write to HTTP header using method parameter input.</ShortDescription>
+        <LongDescription>{1} writes to HTTP header using method parameter input. can introduce unvalidated redirect.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code write to HTTP header using method parameter input. can introduce unvalidated redirect.
+                Injected value can attempt to install malware or trick victims into disclosing passwords or other sensitive information./p>
+                <p>See <a href="https://www.owasp.org/index.php/HTTP_Response_Splitting">HTTP Response Splitting on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_UNVALIDATED_FORWARD">
+        <ShortDescription>Forward HTTP request to method parameter input URL.</ShortDescription>
+        <LongDescription>{1} forwards HTTP request to method parameter input URL can introduce unvalidated forward.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code forward HTTP request to method parameter input URL can introduce unvalidated forward.
+                Injected value can attempt to install malware, or trick victims into disclosing passwords or other sensitive information, or allow access control bypass./p>
+                <p>See <a href="https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards">Unvalidated Redirects and Forwards on OWASP</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_REMOTE_FILE_INCLUSION">
+        <ShortDescription>Include file from method parameter input URL.</ShortDescription>
+        <LongDescription>{1} includes file from method parameter input URL can introduce remote file inclusion.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code include file from method parameter input URL can introduce remote file inclusion.
+                Injected value can allow access control bypass./p>
+                <p>See <a href="http://en.wikipedia.org/wiki/Remote_File_Inclusion">Remote File Inclusion on Wikipedia</a>
+                for more details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+
+    <BugPattern type="INJ_ARG_PATH_TRAVERSAL">
+        <ShortDescription>Load file or directory from method parameter.</ShortDescription>
+        <LongDescription>{1} load file or directory from method parameter that can introduce path traversal.</LongDescription>
+        <Details>
+            <![CDATA[
+                <p>This code load file or directory from method parameter.
+                Injected value can browse unauthorized access to file or directory./p>
+                <p>See <a href="https://www.owasp.org/index.php/Path_Traversal">Path_Traversal on OWASP</a> for more
+                details and preventions.
+            ]]>
+        </Details>
+    </BugPattern>
+    
+    
+    
+
 	<!-- Bug codes -->
 	<BugCode abbrev="INJ">Injection</BugCode>
 </MessageCollection>

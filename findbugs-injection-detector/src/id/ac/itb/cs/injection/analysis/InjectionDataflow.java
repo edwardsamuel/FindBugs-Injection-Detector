@@ -23,6 +23,8 @@ import edu.umd.cs.findbugs.ba.CFG;
 import edu.umd.cs.findbugs.ba.Dataflow;
 
 /**
+ * Dataflow for user injection.
+ *
  * @author Edward Samuel
  */
 public class InjectionDataflow extends Dataflow<InjectionFrame, InjectionAnalysis> {

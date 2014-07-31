@@ -32,6 +32,26 @@
 	<!-- Bug patterns -->
     <BugCode abbrev="INJ"/>
 
-    <BugPattern abbrev="INJ" type="INJ_SINK_CALLED" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_SQL_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_COMMAND_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_XPATH_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_LDAP_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_XSS" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_UNVALIDATED_REDIRECT" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_HTTP_RESPONSE_SPLITTING" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_UNVALIDATED_FORWARD" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_REMOTE_FILE_INCLUSION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_PATH_TRAVERSAL" category="SECURITY" />
+
+    <BugPattern abbrev="INJ" type="INJ_ARG_SQL_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_COMMAND_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_XPATH_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_LDAP_INJECTION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_XSS" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_UNVALIDATED_REDIRECT" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_HTTP_RESPONSE_SPLITTING" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_UNVALIDATED_FORWARD" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_REMOTE_FILE_INCLUSION" category="SECURITY" />
+    <BugPattern abbrev="INJ" type="INJ_ARG_PATH_TRAVERSAL" category="SECURITY" />
 
 </FindbugsPlugin>

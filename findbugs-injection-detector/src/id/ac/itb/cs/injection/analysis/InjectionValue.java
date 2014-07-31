@@ -50,25 +50,28 @@ public class InjectionValue {
     private boolean direct;
     
     /**
-     * If {@link #kind} is {@link #CONTAMINATED}, then sourceLineAnnotation may point to the line from where contaminated value is originating.
+     * Source lines where value is originating.
      */
     private Set<SourceLineAnnotation> sourceLineAnnotations;
 
     /**
-     * 
+     * Local stack indexes where value is originating
      */
     private Set<Integer> localSource;
-    
+
     /**
-     * 
-     */
-    private EnumSet<Vulnerability> decontaminated;
-    
-    /**
-     * 
+     * Validated vulnerabilities for this value
      */
     private EnumSet<Vulnerability> validated;
 
+    /**
+     * Decontaminated vulnerabilities for this value
+     */
+    private EnumSet<Vulnerability> decontaminated;
+
+    /**
+     *
+     */
     private CleanerProperty cleanerProperty;
     
     public Object value;
@@ -254,10 +257,19 @@ public class InjectionValue {
         return "<UNDETERMINED>";
     }
 
+    /**
+     * Check if value is safe from vulnerability
+     *
+     * @param vulnerability
+     * @return
+     */
     public boolean isSafeForSink(Vulnerability vulnerability) {
         return this.kind == UNCONTAMINATED || (this.kind == CONTAMINATED && this.decontaminated.contains(vulnerability));
     }
-    
+
+    /**
+     * Decontaminated value based on validated information
+     */
     public void decontaminate() {
         if (this.kind != CONTAMINATED) {
             throw new IllegalStateException("Can not decontaminate value if kind is not CONTAMINATED object");

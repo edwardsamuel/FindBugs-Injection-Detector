@@ -9,7 +9,6 @@ import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
 import edu.umd.cs.findbugs.classfile.Global;
 import edu.umd.cs.findbugs.classfile.IAnalysisCache;
 import edu.umd.cs.findbugs.classfile.MethodDescriptor;
-import edu.umd.cs.findbugs.util.ClassName;
 import id.ac.itb.cs.Vulnerability;
 import id.ac.itb.cs.injection.analysis.InjectionDataflow;
 import id.ac.itb.cs.injection.analysis.InjectionFrame;
@@ -133,25 +132,23 @@ public class FindInjectionSink implements Detector {
                                             if (DEBUG) {
                                                 System.out.println("Report vulnerability: " + vulnerability);
                                             }
-                                            
-                                            BugInstance bug = new BugInstance(this, "INJ_SINK_CALLED", param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+
+                                            BugInstance bug = new BugInstance(this, getInjectionBugName(vulnerability), param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
                                             bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                             bug.addSourceLine(methodDescriptor, location);
                                             for (SourceLineAnnotation sourceLineAnnotation : param.getSourceLineAnnotations()) {
                                                 bug.addSourceLine(sourceLineAnnotation);
                                             }
-                                            bug.addString(vulnerability.toString());
                                             bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
                                         }
                                     }
-                                    bugAccumulator.reportAccumulatedBugs();
                                     
                                     // Mark caller as sink, if the parameters are from arguments.
                                     for (int localIndex : param.getLocalSource()) {
 
                                         // Cnly check argument from reference type (except reference type of primitive type)
                                         String signature = typeFact.getValue(localIndex).getSignature();
-                                        if (signature.length() == 1 || ClassName.getPrimitiveType(signature) != null) {
+                                        if (Util.isPrimitiveTypeSignature(signature)) {
                                             continue;
                                         }
 
@@ -172,11 +169,12 @@ public class FindInjectionSink implements Detector {
                                             }
                                             
                                             // Report current method as sink with lower priority
-                                            BugInstance bug = new BugInstance(this, "INJ_SINK_CALLED", Priorities.NORMAL_PRIORITY);
-                                            bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
-                                            bug.addCalledMethod(callerXMethod);
-                                            bug.addString(vulnerabilities.toString());
-                                            bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
+                                            for (Vulnerability vulnerability : vulnerabilities) {
+                                                BugInstance bug = new BugInstance(this, getIntroduceInjectionBugName(vulnerability), Priorities.NORMAL_PRIORITY);
+                                                bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
+                                                bug.addCalledMethod(callerXMethod);
+                                                bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
+                                            }
                                         }
                                     }
                                     bugAccumulator.reportAccumulatedBugs();
@@ -218,5 +216,12 @@ public class FindInjectionSink implements Detector {
         returnContaminatedValuePropertyDatabase.setProperty(methodDescriptor, returnContaminatedValueProperty);
         
     }
-    
+
+    private String getInjectionBugName(Vulnerability vulnerability) {
+        return "INJ_" + vulnerability.name();
+    }
+
+    private String getIntroduceInjectionBugName(Vulnerability vulnerability) {
+        return "INJ_ARG_" + vulnerability.name();
+    }
 }

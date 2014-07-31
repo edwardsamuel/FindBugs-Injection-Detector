@@ -33,6 +33,9 @@ import edu.umd.cs.findbugs.classfile.MethodDescriptor;
 import edu.umd.cs.findbugs.classfile.engine.bcel.AnalysisFactory;
 
 /**
+ * Injection Dataflow Factory
+ *
+ * @see id.ac.itb.cs.injection.analysis.InjectionDataflow
  * @author Edward Samuel
  */
 public class InjectionDataflowFactory extends AnalysisFactory<InjectionDataflow> {

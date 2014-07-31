@@ -226,16 +226,19 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             handleInvokeInstruction(obj);
         }
     }
-     
 
+
+    /**
+     * Handle normal invoke instruction.
+     *
+     * @param obj
+     */
     public void handleInvokeInstruction(InvokeInstruction obj) {
         InjectionFrame frame  = getFrame();
         XMethod calledMethod = XFactory.createXMethod(obj, getCPG());
 
         // Check for non-static method parameters
         if (!calledMethod.isStatic()) {
-            
-            // Check for InjectionValue.POSITIVE_VALIDATOR_RESULT_TYPE
             InjectionValue referenceValue;
             try {
                 referenceValue = frame.getValue(frame.getStackLocation(calledMethod.getNumParams()));
@@ -246,13 +249,15 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             CleanerProperty cleanerProperty = referenceValue.getCleanerProperty();
 
             if (referenceValue.getKind() == InjectionValue.CONTAMINATED && referenceValue.isValidated() && !referenceValue.isDecontaminated()) {
+                // Check InjectionValue for validated value
+
                 // Push back referenceValue to stack
                 // Fix for java.util.regex.Matcher.matches()
                 InjectionValue pushValue = new InjectionValue(referenceValue);
                 modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
                 return;
             } else if (cleanerProperty != null) {
-                // TODO: Field Validator
+                // Check for cleaner field
 
                 InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
 

@@ -32,6 +32,8 @@ import edu.umd.cs.findbugs.ba.JavaClassAndMethod;
 import edu.umd.cs.findbugs.ba.Location;
 
 /**
+ * Dataflow analysis for gathering information about the user contaminated of values.
+ *
  * @author Edward Samuel
  */
 public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, InjectionFrame> {
@@ -50,10 +52,18 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
         this.visitor = new InjectionFrameVisitorAnalysis(javaClassAndMethod, methodGen.getConstantPool());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public InjectionFrame createFact() {
         return new InjectionFrame(methodGen.getMaxLocals());
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DataflowAnalysisException
+     */
     public void initEntryFact(InjectionFrame result) throws DataflowAnalysisException {
         result.setValid();
         result.clearStack();
@@ -76,6 +86,11 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DataflowAnalysisException
+     */
     public void meetInto(InjectionFrame fact, Edge edge, InjectionFrame result) throws DataflowAnalysisException {
         if (fact.isValid()) {
             InjectionFrame tempFrame = null;
@@ -99,19 +114,34 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
         mergeInto(fact, result);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DataflowAnalysisException
+     */
     @Override
     protected void mergeValues(InjectionFrame otherFrame, InjectionFrame resultFrame, int slot) throws DataflowAnalysisException {
         InjectionValue value = InjectionValue.merge(resultFrame.getValue(slot), otherFrame.getValue(slot));
         resultFrame.setValue(slot, value);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DataflowAnalysisException
+     */
     @Override
     public void transferInstruction(InstructionHandle handle, BasicBlock basicBlock, InjectionFrame fact)
             throws DataflowAnalysisException {
         visitor.setFrameAndLocation(fact, new Location(handle, basicBlock));
         visitor.analyzeInstruction(handle.getInstruction());
     }
-    
+
+    /**
+     * Check for decontaminated (validator) instruction.
+     *
+     * @throws DataflowAnalysisException
+     */
     public InjectionFrame decontaminatedValidator(InjectionFrame fact, Edge edge) throws DataflowAnalysisException {
         final int edgeType = edge.getType();
         final BasicBlock sourceBlock = edge.getSource();

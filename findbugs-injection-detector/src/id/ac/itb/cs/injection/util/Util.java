@@ -20,8 +20,12 @@
 package id.ac.itb.cs.injection.util;
 
 import edu.umd.cs.findbugs.SystemProperties;
-import edu.umd.cs.findbugs.ba.*;
+import edu.umd.cs.findbugs.ba.DataflowAnalysisException;
+import edu.umd.cs.findbugs.ba.Hierarchy2;
+import edu.umd.cs.findbugs.ba.XFactory;
+import edu.umd.cs.findbugs.ba.XMethod;
 import edu.umd.cs.findbugs.ba.type.TypeFrame;
+import edu.umd.cs.findbugs.util.ClassName;
 import org.apache.bcel.generic.ConstantPoolGen;
 import org.apache.bcel.generic.InvokeInstruction;
 
@@ -35,6 +39,16 @@ public abstract class Util {
 
     private static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
 
+    /**
+     * Get all possible called methods.<br />
+     * When a method called from parent class (i.e: casting), all children classes that override/implement method were be found.<br />
+     * When a method called from directly from class, only return single method.
+     *
+     * @param invokeInstruction
+     * @param typeFrame
+     * @param cpg
+     * @return All possible called methods.
+     */
     public static Set<XMethod> getCalledXMethods(InvokeInstruction invokeInstruction, TypeFrame typeFrame, ConstantPoolGen cpg) {
         XMethod currentXMethod = XFactory.createXMethod(invokeInstruction, cpg);
         
@@ -54,8 +68,21 @@ public abstract class Util {
             }
         }
         calledMethods.add(currentXMethod);
-
         return calledMethods;
     }
-    
+
+    /**
+     * Check signature type for primitive type or reference type of primitive type.
+     *
+     * @param signature
+     * @return true, if the signature is primitive type or reference type of primitive type.
+     */
+    public static boolean isPrimitiveTypeSignature(String signature) {
+        if (signature.startsWith("L")) {
+            return ClassName.getPrimitiveType(signature.substring(1, signature.length() - 1)) != null;
+        } else {
+            return !signature.startsWith("[");
+        }
+    }
+
 }

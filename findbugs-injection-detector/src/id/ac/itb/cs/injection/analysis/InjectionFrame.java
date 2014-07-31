@@ -22,6 +22,8 @@ package id.ac.itb.cs.injection.analysis;
 import edu.umd.cs.findbugs.ba.Frame;
 
 /**
+ * Injection fact (stack frame) for injection dataflow analysis
+ *
  * @author Edward Samuel
  */
 public class InjectionFrame extends Frame<InjectionValue> {
