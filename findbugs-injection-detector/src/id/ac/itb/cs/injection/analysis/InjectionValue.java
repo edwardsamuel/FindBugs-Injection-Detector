@@ -109,7 +109,7 @@ public class InjectionValue {
         } else if (this.kind == CONTAMINATED && other.kind == UNCONTAMINATED) {
             this.kind = CONTAMINATED;
             this.direct |= other.direct;
-        } else if (this.kind == CONTAMINATED && this.kind == CONTAMINATED) {
+        } else if (this.kind == CONTAMINATED && other.kind == CONTAMINATED) {
             this.sourceLineAnnotations.addAll(other.sourceLineAnnotations);
             this.direct |= other.direct;
             this.localSource.addAll(other.localSource);

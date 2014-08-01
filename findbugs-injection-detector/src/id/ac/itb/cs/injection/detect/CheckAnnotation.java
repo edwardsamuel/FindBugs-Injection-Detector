@@ -41,7 +41,10 @@ import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.*;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Edward Samuel
@@ -190,55 +193,33 @@ public class CheckAnnotation implements Detector {
         MethodDescriptor descriptor = xMethod.getMethodDescriptor();
 
         CleanerProperty cProperty = cleanerPropertyDatabase.getProperty(descriptor);
-        if (cProperty == null) {
-            cProperty = new CleanerProperty(CleanerType.UNKNOWN);
-        }
-
         ReturnContaminatedValueProperty rProperty = returnContaminatedValuePropertyDatabase.getProperty(descriptor);
-        if (rProperty == null) {
-            rProperty = new ReturnContaminatedValueProperty(false);
-        }
-        
-        SensitiveParameterProperty sProperty = sensitiveParameterPropertyDatabase.getProperty(descriptor);
-        if (sProperty == null) {
-            sProperty = new SensitiveParameterProperty();
-        }
 
-        Collection<AnnotationValue> annotations = xMethod.getAnnotations();
-        for (AnnotationValue annotation : annotations) {
-            ClassDescriptor annotationDescriptor = annotation.getAnnotationClass();
-            if (annotationDescriptor.matches(ReturnContaminated.class)) {
-                if (DEBUG) {
-                    System.out.println("Method " + xMethod + " contain @ReturnContaminated annotation");
-                }
-
-                rProperty.setContaminated(true);
-            } else if (annotationDescriptor.matches(Cleaner.class)) {
-                if (DEBUG) {
-                    System.out.println("Method " + xMethod + " contain @Cleaner annotation");
-                }
-
-                EnumValue type = (EnumValue) annotation.getValue("type");
-                cProperty.setCleanerType(CleanerType.valueOf(type.value));
-
-                EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
-                Object[] values = (Object[]) annotation.getValue("vulnerabilities");
-                for (Object value : values) {
-                    EnumValue enumValue = (EnumValue) value;
-                    vulnerabilities.add(Vulnerability.valueOf(enumValue.value));
-                }
-                cProperty.setVulnerabilities(vulnerabilities);
+        if (cProperty == null || rProperty == null) {
+            if (cProperty == null) {
+                cProperty = new CleanerProperty(CleanerType.UNKNOWN);
             }
-        }
 
-        for (int i = 0, numParams = xMethod.getNumParams(); i < numParams; i++) {
-            Collection<AnnotationValue> paramAnnotations = xMethod.getParameterAnnotations(i);
-            for (AnnotationValue annotation : paramAnnotations) {
-                ClassDescriptor paramAnnotationDescriptor = annotation.getAnnotationClass();
-                if (paramAnnotationDescriptor.matches(SensitiveParameter.class)) {
+            if (rProperty == null) {
+                rProperty = new ReturnContaminatedValueProperty(false);
+            }
+
+            Collection<AnnotationValue> annotations = xMethod.getAnnotations();
+            for (AnnotationValue annotation : annotations) {
+                ClassDescriptor annotationDescriptor = annotation.getAnnotationClass();
+                if (annotationDescriptor.matches(ReturnContaminated.class)) {
                     if (DEBUG) {
-                        System.out.println("Method " + xMethod + " contain @SensitiveParameter annotation on param #" + i);
+                        System.out.println("Method " + xMethod + " contain @ReturnContaminated annotation");
                     }
+
+                    rProperty.setContaminated(true);
+                } else if (annotationDescriptor.matches(Cleaner.class)) {
+                    if (DEBUG) {
+                        System.out.println("Method " + xMethod + " contain @Cleaner annotation");
+                    }
+
+                    EnumValue type = (EnumValue) annotation.getValue("type");
+                    cProperty.setCleanerType(CleanerType.valueOf(type.value));
 
                     EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
                     Object[] values = (Object[]) annotation.getValue("vulnerabilities");
@@ -246,15 +227,40 @@ public class CheckAnnotation implements Detector {
                         EnumValue enumValue = (EnumValue) value;
                         vulnerabilities.add(Vulnerability.valueOf(enumValue.value));
                     }
-                    sProperty.setParamWithProperty(i, true, vulnerabilities);
+                    cProperty.setVulnerabilities(vulnerabilities);
                 }
-                System.out.println(annotation);
             }
+
+            cleanerPropertyDatabase.setProperty(descriptor, cProperty);
+            returnContaminatedValuePropertyDatabase.setProperty(descriptor, rProperty);
         }
 
-        cleanerPropertyDatabase.setProperty(descriptor, cProperty);
-        returnContaminatedValuePropertyDatabase.setProperty(descriptor, rProperty);
-        sensitiveParameterPropertyDatabase.setProperty(descriptor, sProperty);
+        SensitiveParameterProperty sProperty = sensitiveParameterPropertyDatabase.getProperty(descriptor);
+        if (sProperty == null) {
+            sProperty = new SensitiveParameterProperty();
+
+            for (int i = 0, numParams = xMethod.getNumParams(); i < numParams; i++) {
+                Collection<AnnotationValue> paramAnnotations = xMethod.getParameterAnnotations(i);
+                for (AnnotationValue annotation : paramAnnotations) {
+                    ClassDescriptor paramAnnotationDescriptor = annotation.getAnnotationClass();
+                    if (paramAnnotationDescriptor.matches(SensitiveParameter.class)) {
+                        if (DEBUG) {
+                            System.out.println("Method " + xMethod + " contain @SensitiveParameter annotation on param #" + i);
+                        }
+
+                        EnumSet<Vulnerability> vulnerabilities = EnumSet.noneOf(Vulnerability.class);
+                        Object[] values = (Object[]) annotation.getValue("vulnerabilities");
+                        for (Object value : values) {
+                            EnumValue enumValue = (EnumValue) value;
+                            vulnerabilities.add(Vulnerability.valueOf(enumValue.value));
+                        }
+                        sProperty.setParamWithProperty(i, true, vulnerabilities);
+                    }
+                }
+            }
+
+            sensitiveParameterPropertyDatabase.setProperty(descriptor, sProperty);
+        }
     }
 
     public void report() {

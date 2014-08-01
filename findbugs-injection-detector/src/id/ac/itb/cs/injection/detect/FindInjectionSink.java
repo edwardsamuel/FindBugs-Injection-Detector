@@ -184,7 +184,7 @@ public class FindInjectionSink implements Detector {
                                 }
                             }
                         } else {
-                            throw new IllegalStateException("Called unkown sink method: " + calledXMethod);
+                            throw new IllegalStateException("Called unknown sink method: " + calledXMethod);
                         }
                     }
                 }
@@ -203,30 +203,34 @@ public class FindInjectionSink implements Detector {
         // Check for contaminated value on each return locations
         ReturnContaminatedValuePropertyDatabase returnContaminatedValuePropertyDatabase = analysisCache.getDatabase(ReturnContaminatedValuePropertyDatabase.class);
         ReturnContaminatedValueProperty returnContaminatedValueProperty = returnContaminatedValuePropertyDatabase.getProperty(methodDescriptor);
-        for (int i = 0, len = returnLocations.size(); i < len; i++) {
-            Location returnLocation = returnLocations.get(i);
-            InstructionHandle returnHandle = returnHandles.get(i);
+        if (returnContaminatedValueProperty != null) {
+            for (int i = 0, len = returnLocations.size(); i < len; i++) {
+                Location returnLocation = returnLocations.get(i);
+                InstructionHandle returnHandle = returnHandles.get(i);
 
-            InjectionFrame frame = injectionDataflow.getFactAtLocation(returnLocation);
-            InjectionValue returnValue = frame.getStackValue(0);
-            
-            if (returnValue.getKind() == InjectionValue.CONTAMINATED) {
-                if (DEBUG) {
-                    System.out.println("Mark " + methodDescriptor + " as return contaminated value.");
-                }
-                
-                returnContaminatedValueProperty.setContaminated(true);
+                InjectionFrame frame = injectionDataflow.getFactAtLocation(returnLocation);
+                InjectionValue returnValue = frame.getStackValue(0);
 
-                if (DEBUG) {
-                    BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", returnValue.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
-                    bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
-                    bug.addSourceLine(methodDescriptor, returnLocation);
-                    for (SourceLineAnnotation sourceLineAnnotation : returnValue.getSourceLineAnnotations()) {
-                        bug.addSourceLine(sourceLineAnnotation);
+                if (returnValue.getKind() == InjectionValue.CONTAMINATED) {
+                    if (DEBUG) {
+                        System.out.println("Mark " + methodDescriptor + " as return contaminated value.");
                     }
-                    bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), returnHandle));
+
+                    returnContaminatedValueProperty.setContaminated(true);
+
+                    if (DEBUG) {
+                        BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", returnValue.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+                        bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
+                        bug.addSourceLine(methodDescriptor, returnLocation);
+                        for (SourceLineAnnotation sourceLineAnnotation : returnValue.getSourceLineAnnotations()) {
+                            bug.addSourceLine(sourceLineAnnotation);
+                        }
+                        bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), returnHandle));
+                    }
                 }
             }
+        } else {
+            throw new IllegalStateException("Called unknown return contaminated method: " + methodDescriptor);
         }
         returnContaminatedValuePropertyDatabase.setProperty(methodDescriptor, returnContaminatedValueProperty);
         

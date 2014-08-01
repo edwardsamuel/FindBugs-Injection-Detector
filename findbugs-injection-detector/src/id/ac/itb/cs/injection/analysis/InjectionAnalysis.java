@@ -38,7 +38,6 @@ import edu.umd.cs.findbugs.ba.Location;
  */
 public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, InjectionFrame> {
 
-    private JavaClassAndMethod javaClassAndMethod;
     private MethodGen methodGen;
     private InjectionFrameVisitorAnalysis visitor;
     
@@ -47,7 +46,6 @@ public class InjectionAnalysis extends FrameDataflowAnalysis<InjectionValue, Inj
      */
     public InjectionAnalysis(JavaClassAndMethod javaClassAndMethod, MethodGen methodGen, DepthFirstSearch dfs) {
         super(dfs);
-        this.javaClassAndMethod = javaClassAndMethod;
         this.methodGen = methodGen;
         this.visitor = new InjectionFrameVisitorAnalysis(javaClassAndMethod, methodGen.getConstantPool());
     }
