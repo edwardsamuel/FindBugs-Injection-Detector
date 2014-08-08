@@ -1,4 +1,4 @@
-package id.ac.itb.cs;
+package id.ac.itb.injection;
 
 /**
  *

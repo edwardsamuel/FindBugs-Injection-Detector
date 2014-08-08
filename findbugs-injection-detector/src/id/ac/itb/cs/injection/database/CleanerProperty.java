@@ -19,8 +19,8 @@
 
 package id.ac.itb.cs.injection.database;
 
-import id.ac.itb.cs.CleanerType;
-import id.ac.itb.cs.Vulnerability;
+import id.ac.itb.injection.CleanerType;
+import id.ac.itb.injection.Vulnerability;
 
 import java.util.EnumSet;
 

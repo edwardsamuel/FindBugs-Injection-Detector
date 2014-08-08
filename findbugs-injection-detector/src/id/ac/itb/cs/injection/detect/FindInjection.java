@@ -9,7 +9,7 @@ import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
 import edu.umd.cs.findbugs.classfile.Global;
 import edu.umd.cs.findbugs.classfile.IAnalysisCache;
 import edu.umd.cs.findbugs.classfile.MethodDescriptor;
-import id.ac.itb.cs.Vulnerability;
+import id.ac.itb.injection.Vulnerability;
 import id.ac.itb.cs.injection.analysis.InjectionDataflow;
 import id.ac.itb.cs.injection.analysis.InjectionFrame;
 import id.ac.itb.cs.injection.analysis.InjectionValue;
@@ -24,7 +24,7 @@ import org.apache.bcel.generic.*;
 
 import java.util.*;
 
-public class FindInjectionSink implements Detector {
+public class FindInjection implements Detector {
     public static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
     
     private BugAccumulator bugAccumulator;
@@ -34,7 +34,7 @@ public class FindInjectionSink implements Detector {
 
     private SensitiveParameterPropertyDatabase sensitiveParameterPropertyDatabase;
         
-    public FindInjectionSink(BugReporter bugReporter) {
+    public FindInjection(BugReporter bugReporter) {
         this.bugReporter = bugReporter;
         this.bugAccumulator = new BugAccumulator(bugReporter);
     }
@@ -56,18 +56,18 @@ public class FindInjectionSink implements Detector {
             try {
                 analyzeMethod(classContext, method);
             } catch (CFGBuilderException e) {
-                bugReporter.logError("FindInjectionSink caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
             } catch (CheckedAnalysisException e) {
-                bugReporter.logError("FindInjectionSink caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
             } catch (RuntimeException e) {
-                bugReporter.logError("FindInjectionSink caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
             }
         }
     }
     
     private void analyzeMethod(ClassContext classContext, Method method) throws CheckedAnalysisException {
         if (DEBUG) {
-            System.out.println("--- FindInjectionSink Analyze: " + classContext.getFullyQualifiedMethodName(method));
+            System.out.println("--- FindInjection Analyze: " + classContext.getFullyQualifiedMethodName(method));
         }
         
         JavaClass javaClass = classContext.getJavaClass();
@@ -140,7 +140,8 @@ public class FindInjectionSink implements Detector {
                                             for (SourceLineAnnotation sourceLineAnnotation : param.getSourceLineAnnotations()) {
                                                 bug.addSourceLine(sourceLineAnnotation);
                                             }
-                                            bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
+                                            bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));                                                bugAccumulator.reportAccumulatedBugs();
+                                            bugAccumulator.reportAccumulatedBugs();
                                         }
                                     }
                                     
@@ -175,10 +176,10 @@ public class FindInjectionSink implements Detector {
                                                 bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                                 bug.addCalledMethod(callerXMethod);
                                                 bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
+                                                bugAccumulator.reportAccumulatedBugs();
                                             }
                                         }
                                     }
-                                    bugAccumulator.reportAccumulatedBugs();
 
                                     sensitiveParameterPropertyDatabase.setProperty(methodDescriptor, callerSensitive);
                                 }
@@ -222,6 +223,7 @@ public class FindInjectionSink implements Detector {
                         BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", returnValue.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
                         bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                         bug.addSourceLine(methodDescriptor, returnLocation);
+                        bug.addMethod(methodDescriptor);
                         for (SourceLineAnnotation sourceLineAnnotation : returnValue.getSourceLineAnnotations()) {
                             bug.addSourceLine(sourceLineAnnotation);
                         }
@@ -233,7 +235,6 @@ public class FindInjectionSink implements Detector {
             throw new IllegalStateException("Called unknown return contaminated method: " + methodDescriptor);
         }
         returnContaminatedValuePropertyDatabase.setProperty(methodDescriptor, returnContaminatedValueProperty);
-        
     }
 
     private String getInjectionBugName(Vulnerability vulnerability) {

@@ -20,7 +20,7 @@
 package id.ac.itb.cs.injection.analysis;
 
 import edu.umd.cs.findbugs.SourceLineAnnotation;
-import id.ac.itb.cs.Vulnerability;
+import id.ac.itb.injection.Vulnerability;
 import id.ac.itb.cs.injection.database.CleanerProperty;
 
 import javax.annotation.Nonnull;
@@ -103,7 +103,6 @@ public class InjectionValue {
             this.kind = CONTAMINATED;
             this.direct |= other.direct;
             this.sourceLineAnnotations = new HashSet<SourceLineAnnotation>(other.sourceLineAnnotations);
-            this.localSource = new HashSet<Integer>(other.localSource);
             this.validated.addAll(other.validated);
             this.decontaminated.addAll(other.decontaminated);
         } else if (this.kind == CONTAMINATED && other.kind == UNCONTAMINATED) {
@@ -112,11 +111,11 @@ public class InjectionValue {
         } else if (this.kind == CONTAMINATED && other.kind == CONTAMINATED) {
             this.sourceLineAnnotations.addAll(other.sourceLineAnnotations);
             this.direct |= other.direct;
-            this.localSource.addAll(other.localSource);
             this.validated.retainAll(other.validated);
             this.decontaminated.retainAll(other.decontaminated);
         }
 
+        this.localSource.addAll(other.localSource);
         if (this.cleanerProperty == null) {
             this.cleanerProperty = other.cleanerProperty;
         }

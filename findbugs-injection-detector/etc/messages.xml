@@ -22,7 +22,7 @@
         </Details>
     </Detector>
 
-    <Detector class="id.ac.itb.cs.injection.detect.FindInjectionSink">
+    <Detector class="id.ac.itb.cs.injection.detect.FindInjection">
         <Details>
             <![CDATA[
 	            <p>This detector finds injection sink and check for user contaminated input.</p>

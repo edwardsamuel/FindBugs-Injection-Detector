@@ -1,6 +1,6 @@
-package id.ac.itb.cs.annotation;
+package id.ac.itb.injection.annotation;
 
-import id.ac.itb.cs.Vulnerability;
+import id.ac.itb.injection.Vulnerability;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

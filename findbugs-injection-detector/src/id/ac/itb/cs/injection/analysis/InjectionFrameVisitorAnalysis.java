@@ -25,7 +25,7 @@ import edu.umd.cs.findbugs.ba.*;
 import edu.umd.cs.findbugs.ba.type.TypeDataflow;
 import edu.umd.cs.findbugs.ba.type.TypeFrame;
 import edu.umd.cs.findbugs.classfile.*;
-import id.ac.itb.cs.CleanerType;
+import id.ac.itb.injection.CleanerType;
 import id.ac.itb.cs.injection.database.CleanerProperty;
 import id.ac.itb.cs.injection.database.CleanerPropertyDatabase;
 import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;

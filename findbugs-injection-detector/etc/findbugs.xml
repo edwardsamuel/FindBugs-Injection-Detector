@@ -13,7 +13,7 @@
         </SplitPass>
         <SplitPass>
             <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
-            <Later class="id.ac.itb.cs.injection.detect.FindInjectionSink"/>
+            <Later class="id.ac.itb.cs.injection.detect.FindInjection"/>
         </SplitPass>
 	</OrderingConstraints>
 	
@@ -22,7 +22,7 @@
               speed="fast"
               reports=""
               hidden="true" />
-    <Detector class="id.ac.itb.cs.injection.detect.FindInjectionSink"
+    <Detector class="id.ac.itb.cs.injection.detect.FindInjection"
               speed="slow"
               reports="" />
 
