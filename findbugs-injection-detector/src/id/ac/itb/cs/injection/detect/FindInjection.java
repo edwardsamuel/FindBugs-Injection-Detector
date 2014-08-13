@@ -134,7 +134,7 @@ public class FindInjection implements Detector {
                                                 System.out.println("Report vulnerability: " + vulnerability);
                                             }
 
-                                            BugInstance bug = new BugInstance(this, getInjectionBugName(vulnerability), param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+                                            BugInstance bug = new BugInstance(this, Util.getInjectionBugName(vulnerability), param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
                                             bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                             bug.addSourceLine(methodDescriptor, location);
                                             for (SourceLineAnnotation sourceLineAnnotation : param.getSourceLineAnnotations()) {
@@ -172,7 +172,7 @@ public class FindInjection implements Detector {
                                             
                                             // Report current method as sink with lower priority
                                             for (Vulnerability vulnerability : vulnerabilities) {
-                                                BugInstance bug = new BugInstance(this, getIntroduceInjectionBugName(vulnerability), Priorities.NORMAL_PRIORITY);
+                                                BugInstance bug = new BugInstance(this, Util.getIntroduceInjectionBugName(vulnerability), Priorities.NORMAL_PRIORITY);
                                                 bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                                 bug.addCalledMethod(callerXMethod);
                                                 bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), instructionHandle));
@@ -220,7 +220,7 @@ public class FindInjection implements Detector {
                     returnContaminatedValueProperty.setContaminated(true);
 
                     if (DEBUG) {
-                        BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", returnValue.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+                        BugInstance bug = new BugInstance(this, "INJ_RETURN_CONTAMINATED", Priorities.NORMAL_PRIORITY);
                         bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                         bug.addSourceLine(methodDescriptor, returnLocation);
                         bug.addMethod(methodDescriptor);
@@ -228,6 +228,7 @@ public class FindInjection implements Detector {
                             bug.addSourceLine(sourceLineAnnotation);
                         }
                         bugAccumulator.accumulateBug(bug, SourceLineAnnotation.fromVisitedInstruction(classContext, methodGen, javaClass.getSourceFileName(), returnHandle));
+                        bugAccumulator.reportAccumulatedBugs();
                     }
                 }
             }
@@ -235,13 +236,5 @@ public class FindInjection implements Detector {
             throw new IllegalStateException("Called unknown return contaminated method: " + methodDescriptor);
         }
         returnContaminatedValuePropertyDatabase.setProperty(methodDescriptor, returnContaminatedValueProperty);
-    }
-
-    private String getInjectionBugName(Vulnerability vulnerability) {
-        return "INJ_" + vulnerability.name();
-    }
-
-    private String getIntroduceInjectionBugName(Vulnerability vulnerability) {
-        return "INJ_ARG_" + vulnerability.name();
     }
 }

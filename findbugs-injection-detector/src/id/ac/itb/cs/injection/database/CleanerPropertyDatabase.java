@@ -34,16 +34,15 @@ import java.io.Writer;
 
 /**
  * Method property database storing which method are cleaner (validator/santizer)
- * Modified from {@link edu.umd.cs.findbugs.ba.interproc.MethodPropertyDatabase} and {@link edu.umd.cs.findbugs.ba.npe.ParameterNullnessPropertyDatabase}
- * 
- * @see edu.umd.cs.findbugs.ba.npe.ReturnValueNullnessPropertyDatabase
+ * Modified from {@link edu.umd.cs.findbugs.ba.interproc.MethodPropertyDatabase}
+ *
  * @author Edward Samuel
  */
 public class CleanerPropertyDatabase extends PropertyDatabase<FieldOrMethodDescriptor, CleanerProperty>  {
 
     private static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
     
-    public static final String FILE_NAME = "db_validator.txt";
+    public static final String FILE_NAME = "db_cleaner.txt";
     
     public CleanerPropertyDatabase() {
         try {

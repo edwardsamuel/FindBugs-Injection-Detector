@@ -139,26 +139,25 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     public void visitINVOKESPECIAL(INVOKESPECIAL obj) {
         InjectionFrame frame = getFrame();
         
-        String className = obj.getReferenceType(cpg).toString();
+        // String className = obj.getReferenceType(cpg).toString();
         String methodName = obj.getName(cpg);
         // String methodSig = obj.getSignature(cpg);
 
-        if (("java.lang.StringBuilder".equals(className) || "java.lang.StringBuffer".equals(className) || "java.lang.String".equals(className))
-                && "<init>".equals(methodName)) {
+        if ("<init>".equals(methodName)) {
             try {
                 // StringBuilder Constructor
                 // Consume stack and then push parameter value to stack
-                InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
+                InjectionValue thisValue = frame.getStackValue(getNumWordsConsumed(obj) - 1);
 
                 for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
-                    pushValue.meetWith(frame.getStackValue(i));
+                    thisValue.meetWith(frame.getStackValue(i));
                 }
 
-                if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
-                    pushValue.addSourceLineAnnotation(currentSourceLine());
+                if (thisValue.getKind() == InjectionValue.CONTAMINATED) {
+                    thisValue.addSourceLineAnnotation(currentSourceLine());
                 }
 
-                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), thisValue);
                 return;
             } catch (DataflowAnalysisException e) {
                 throw new InvalidBytecodeException("Not enough values on the stack", e);
@@ -267,7 +266,23 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
 
                 modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
                 return;
+            } else if (referenceValue.getKind() == InjectionValue.CONTAMINATED && !Util.isPrimitiveTypeSignature(obj.getReturnType(cpg).getSignature())) {
+                // If referenced value contaminated, then any return reference value mark as contaminated
+                InjectionValue pushValue = new InjectionValue(referenceValue);
+
+                try {
+                    for (int i = 0; i < calledMethod.getNumParams(); ++i) {
+                        InjectionValue param = frame.getStackValue(i);
+                        pushValue.meetWith(param);
+                    }
+                } catch (DataflowAnalysisException e) {
+                    throw new InvalidBytecodeException("Not enough values on the stack", e);
+                }
+
+                modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), pushValue);
+                return;
             } else {
+                // If parameter contaminated, then mark "this" as contaminated too.
                 checkReferenceObjectParameter(calledMethod);
             }
         }
@@ -465,6 +480,16 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
             modelNormalInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj));
         } catch (DataflowAnalysisException e) {
             throw new InvalidBytecodeException("Not enough values on the stack", e);
+        }
+    }
+
+    @Override
+    public void visitCHECKCAST(CHECKCAST obj) {
+        InjectionFrame frame = getFrame();
+        try {
+            modelInstruction(obj, getNumWordsConsumed(obj), getNumWordsProduced(obj), frame.getTopValue());
+        } catch (DataflowAnalysisException e) {
+            e.printStackTrace();
         }
     }
 }

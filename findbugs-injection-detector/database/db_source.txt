@@ -72,3 +72,4 @@ method,javax.swing.JEditorPane,getText,()Ljava/lang/String;,non-static|true
 method,javax.swing.JEditorPane,getText,(II)Ljava/lang/String;,non-static|true
 method,javax.swing.JTextPane,getText,()Ljava/lang/String;,non-static|true
 method,javax.swing.JTextPane,getText,(II)Ljava/lang/String;,non-static|true
+method,javax.servlet.http.HttpSession,getAttribute,(Ljava/lang/String;)Ljava/lang/Object;,non-static|true
