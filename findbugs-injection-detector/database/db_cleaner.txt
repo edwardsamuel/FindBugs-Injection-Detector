@@ -1,1 +1,6 @@
-method,java.util.regex.Pattern,matcher,(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;,non-static|validator|SQL_INJECTION,COMMAND_INJECTION,XPATH_INJECTION,LDAP_INJECTION,XSS,UNVALIDATED_REDIRECT,HTTP_RESPONSE_SPLITTING,UNVALIDATED_FORWARD,REMOTE_FILE_INCLUSION,PATH_TRAVERSAL
+method,org.apache.commons.lang3.StringEscapeUtils,escapeEcmaScript,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS
+method,org.apache.commons.lang3.StringEscapeUtils,escapeHtml3,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS
+method,org.apache.commons.lang3.StringEscapeUtils,escapeHtml4,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS
+method,org.apache.commons.lang3.StringEscapeUtils,escapeXml,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS
+method,org.apache.commons.lang3.StringEscapeUtils,escapeXml10,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS
+method,org.apache.commons.lang3.StringEscapeUtils,escapeXml11,(Ljava/lang/String;)Ljava/lang/String;,static|SANITIZER|XSS

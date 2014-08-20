@@ -328,6 +328,21 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
                     
                     pushValue.setValidated(cleanerProperty.getVulnerabilities());
                     pushValue.decontaminate();
+                } else if (cleanerProperty.getCleanerType() == CleanerType.UNKNOWN) {
+                    try {
+                        for (int i = 0; i < calledXMethod.getNumParams(); ++i) {
+                            InjectionValue param = frame.getStackValue(i);
+                            pushValue.meetWith(param);
+                        }
+                    } catch (DataflowAnalysisException e) {
+                        throw new InvalidBytecodeException("Not enough values on the stack", e);
+                    }
+
+                    if (pushValue.getKind() == InjectionValue.CONTAMINATED) {
+                        if (DEBUG) {
+                            System.out.println("Called unknown method with contaminated parameter: " + calledXMethod);
+                        }
+                    }
                 }
             } else {
                 if (CHECK_FOR_ANNOTATION_FIRST) {
