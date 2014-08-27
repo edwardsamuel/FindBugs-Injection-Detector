@@ -99,15 +99,28 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
     public void visitAALOAD(AALOAD obj) {
         InjectionFrame frame = getFrame();
         try {
-            frame.popValue();
-            InjectionValue object = frame.popValue();
-            if (object.getKind() == InjectionValue.CONTAMINATED) {
-                InjectionValue pushValue = new InjectionValue(object);
+            frame.popValue(); // Index
+            InjectionValue arrayRef = frame.popValue(); // Array reference
+            if (arrayRef.getKind() == InjectionValue.CONTAMINATED) {
+                InjectionValue pushValue = new InjectionValue(arrayRef);
                 pushValue.addSourceLineAnnotation(currentSourceLine());
                 frame.pushValue(pushValue);
             } else {
-                frame.pushValue(new InjectionValue(object));
+                frame.pushValue(new InjectionValue(arrayRef));
             }
+        } catch (DataflowAnalysisException e) {
+            throw new InvalidBytecodeException("Not enough values on the stack", e);
+        }
+    }
+
+    @Override
+    public void visitAASTORE(AASTORE obj) {
+        InjectionFrame frame = getFrame();
+        try {
+            InjectionValue value = frame.popValue(); // Value
+            frame.popValue(); // Index
+            InjectionValue arrayRef = frame.popValue(); // Array reference
+            arrayRef.meetWith(value);
         } catch (DataflowAnalysisException e) {
             throw new InvalidBytecodeException("Not enough values on the stack", e);
         }
