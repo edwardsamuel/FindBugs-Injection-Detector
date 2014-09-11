@@ -25,7 +25,7 @@ import edu.umd.cs.findbugs.ba.*;
 import edu.umd.cs.findbugs.ba.type.TypeDataflow;
 import edu.umd.cs.findbugs.ba.type.TypeFrame;
 import edu.umd.cs.findbugs.classfile.*;
-import id.ac.itb.injection.CleanerType;
+import id.ac.itb.cs.injection.CleanerType;
 import id.ac.itb.cs.injection.database.CleanerProperty;
 import id.ac.itb.cs.injection.database.CleanerPropertyDatabase;
 import id.ac.itb.cs.injection.database.ReturnContaminatedValueProperty;
@@ -192,13 +192,27 @@ public class InjectionFrameVisitorAnalysis extends AbstractFrameModelingVisitor<
 
     public void modelStringManipulationInstruction(InvokeInstruction obj) {
         InjectionFrame frame = getFrame();
+
+        TypeDataflow typeDataflow;
+        TypeFrame typeFrame;
+        try {
+            XMethod callerXMethod = XFactory.createXMethod(javaClassAndMethod);
+            typeDataflow = Global.getAnalysisCache().getMethodAnalysis(TypeDataflow.class, callerXMethod.getMethodDescriptor());
+            typeFrame = typeDataflow.getFactAtLocation(getLocation());
+        } catch (CheckedAnalysisException e) {
+            throw new InvalidBytecodeException("Error while analyze " + obj + " for Type Dataflow", e);
+        }
+
         try {
             InjectionValue pushValue = new InjectionValue(InjectionValue.UNCONTAMINATED);
 
             Type returnType = obj.getReturnType(cpg);
             if (returnType instanceof ReferenceType) {
                 for (int i = 0, len = getNumWordsConsumed(obj); i < len; i++) {
-                    pushValue.meetWith(frame.getStackValue(i));
+                    InjectionValue value = frame.getStackValue(i);
+                    if (!Util.isPrimitiveTypeSignature(typeFrame.getStackValue(i).getSignature())) {
+                        pushValue.meetWith(value);
+                    }
                 }
 
                 if (pushValue.getKind() == InjectionValue.CONTAMINATED) {

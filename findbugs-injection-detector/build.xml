@@ -12,7 +12,6 @@
             destdir="bin"
 			target="1.5">
             <src path="src" />
-            <src path="../findbugs-injection-annotation/src" />
 			<classpath refid="injection-detector.classpath"/>
 		</javac>
 	</target>

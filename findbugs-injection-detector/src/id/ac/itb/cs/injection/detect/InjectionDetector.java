@@ -9,7 +9,7 @@ import edu.umd.cs.findbugs.classfile.CheckedAnalysisException;
 import edu.umd.cs.findbugs.classfile.Global;
 import edu.umd.cs.findbugs.classfile.IAnalysisCache;
 import edu.umd.cs.findbugs.classfile.MethodDescriptor;
-import id.ac.itb.injection.Vulnerability;
+import id.ac.itb.cs.injection.Vulnerability;
 import id.ac.itb.cs.injection.analysis.InjectionDataflow;
 import id.ac.itb.cs.injection.analysis.InjectionFrame;
 import id.ac.itb.cs.injection.analysis.InjectionValue;
@@ -24,7 +24,7 @@ import org.apache.bcel.generic.*;
 
 import java.util.*;
 
-public class FindInjection implements Detector {
+public class InjectionDetector implements Detector {
     public static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
     
     private BugAccumulator bugAccumulator;
@@ -34,7 +34,7 @@ public class FindInjection implements Detector {
 
     private SensitiveParameterPropertyDatabase sensitiveParameterPropertyDatabase;
         
-    public FindInjection(BugReporter bugReporter) {
+    public InjectionDetector(BugReporter bugReporter) {
         this.bugReporter = bugReporter;
         this.bugAccumulator = new BugAccumulator(bugReporter);
     }
@@ -54,20 +54,20 @@ public class FindInjection implements Detector {
 
             String methodSignature = classContext.getFullyQualifiedMethodName(method);
             try {
-                analyzeMethod(classContext, method);
+                detect(classContext, method);
             } catch (CFGBuilderException e) {
-                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("InjectionDetector caught exception while analyzing " + methodSignature, e);
             } catch (CheckedAnalysisException e) {
-                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("InjectionDetector caught exception while analyzing " + methodSignature, e);
             } catch (RuntimeException e) {
-                bugReporter.logError("FindInjection caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("InjectionDetector caught exception while analyzing " + methodSignature, e);
             }
         }
     }
     
-    private void analyzeMethod(ClassContext classContext, Method method) throws CheckedAnalysisException {
+    private void detect(ClassContext classContext, Method method) throws CheckedAnalysisException {
         if (DEBUG) {
-            System.out.println("--- FindInjection Analyze: " + classContext.getFullyQualifiedMethodName(method));
+            System.out.println("--- InjectionDetector Analyze: " + classContext.getFullyQualifiedMethodName(method));
         }
         
         JavaClass javaClass = classContext.getJavaClass();
@@ -119,14 +119,15 @@ public class FindInjection implements Detector {
                             InjectionFrame frame = injectionDataflow.getFactAtLocation(new Location(instructionHandle, block));
                             int callerShiftParams = callerXMethod.isStatic() ? 0 : 1;
                             int callerNumParams = callerXMethod.getNumParams();
+                            int calledNumParams = calledXMethod.getNumParams();
                                                         
-                            for (int i = 0, numParams = calledXMethod.getNumParams(); i < numParams; i++) {
+                            for (int i = 0; i < calledNumParams; i++) {
                                 if (calledSensitive.hasProperty(i)) {
                                     if (DEBUG) {
                                         System.out.println("Called sink method: " + calledDescriptor + " on param #" + i);
                                     }
                                     
-                                    InjectionValue param = frame.getStackValue(i);
+                                    InjectionValue param = frame.getStackValue(calledNumParams - i - 1);
                                     
                                     for (Vulnerability vulnerability : calledSensitive.getVulnerabilities(i)) {
                                         if (!param.isSafeForSink(vulnerability)) {
@@ -134,7 +135,7 @@ public class FindInjection implements Detector {
                                                 System.out.println("Report vulnerability: " + vulnerability);
                                             }
 
-                                            BugInstance bug = new BugInstance(this, Util.getInjectionBugName(vulnerability), param.isDirect() ? Priorities.HIGH_PRIORITY : Priorities.NORMAL_PRIORITY);
+                                            BugInstance bug = new BugInstance(this, Util.getInjectionBugName(vulnerability), Priorities.HIGH_PRIORITY);
                                             bug.addClassAndMethod(methodGen, javaClass.getSourceFileName());
                                             bug.addSourceLine(methodDescriptor, location);
                                             for (SourceLineAnnotation sourceLineAnnotation : param.getSourceLineAnnotations()) {

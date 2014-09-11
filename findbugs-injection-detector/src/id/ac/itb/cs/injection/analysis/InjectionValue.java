@@ -20,7 +20,7 @@
 package id.ac.itb.cs.injection.analysis;
 
 import edu.umd.cs.findbugs.SourceLineAnnotation;
-import id.ac.itb.injection.Vulnerability;
+import id.ac.itb.cs.injection.Vulnerability;
 import id.ac.itb.cs.injection.database.CleanerProperty;
 
 import javax.annotation.Nonnull;

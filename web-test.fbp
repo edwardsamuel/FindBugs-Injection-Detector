@@ -1,6 +1,0 @@
-<Project projectName="Web Test">
-  <Jar>D:\Git\findbugs-injection-detector\out\production\web-test</Jar>
-  <AuxClasspathEntry>C:\Program Files\Apache Software Foundation\Apache Tomcat 7.0.41\lib\servlet-api.jar</AuxClasspathEntry>
-  <AuxClasspathEntry>D:\Git\findbugs-injection-detector\findbugs\lib\annotations.jar</AuxClasspathEntry>
-  <SrcDir>D:\Git\findbugs-injection-detector\web-test\src</SrcDir>
-</Project>

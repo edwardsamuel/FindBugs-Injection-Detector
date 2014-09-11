@@ -1,0 +1,7 @@
+<Project projectName="FindBugs Injection Detector">
+  <Jar>.\injection-detector.jar</Jar>
+  <AuxClasspathEntry>..\lib\annotations.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>..\lib\bcel.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>..\lib\findbugs.jar</AuxClasspathEntry>
+  <SrcDir>.\src</SrcDir>
+</Project>

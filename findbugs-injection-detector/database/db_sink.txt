@@ -26,9 +26,9 @@ java.lang.Runtime,loadLibrary,(Ljava/lang/String;)V,non-static|0,COMMAND_INJECTI
 java.lang.Runtime,load,(Ljava/lang/String;)V,non-static|0,COMMAND_INJECTION
 javax.xml.xpath.XPath,compile,(Ljava/lang/String;)Ljavax/xml/xpath/XPathExpression;,non-static|0,XPATH_INJECTION
 javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Lorg/xml/sax/InputSource;)Ljava/lang/String;,non-static|0,XPATH_INJECTION
-javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Lorg/xml/sax/InputSource;Ljavax/xml/namespace/Qname;)Ljava/lang/Object;,non-static|0,XPATH_INJECTION
+javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Lorg/xml/sax/InputSource;Ljavax/xml/namespace/QName;)Ljava/lang/Object;,non-static|0,XPATH_INJECTION
 javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;,non-static|0,XPATH_INJECTION
-javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Ljava/lang/Object;Ljavax/xml/namespace/Qname;)Ljava/lang/Object;,non-static|0,XPATH_INJECTION
+javax.xml.xpath.XPath,evaluate,(Ljava/lang/String;Ljava/lang/Object;Ljavax/xml/namespace/QName;)Ljava/lang/Object;,non-static|0,XPATH_INJECTION
 org.apache.xpath.XPath,<init>,(Ljava/lang/String;Ljavax/xml/transform/SourceLocator;Lorg/apache/xml/utils/PrefixResolver;I)V,non-static|0,XPATH_INJECTION
 org.apache.xpath.XPath,<init>,(Ljava/lang/String;Ljavax/xml/transform/SourceLocator;Lorg/apache/xml/utils/PrefixResolver;ILjavax/xml/transform/ErrorListener;)V,non-static|0,XPATH_INJECTION
 org.apache.xpath.XPath,<init>,(Ljava/lang/String;Ljavax/xml/transform/SourceLocator;Lorg/apache/xml/utils/PrefixResolver;ILjavax/xml/transform/ErrorListener;Lorg/apache/xpath/compiler/FunctionTable;)V,non-static|0,XPATH_INJECTION

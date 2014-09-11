@@ -30,11 +30,8 @@ import edu.umd.cs.findbugs.classfile.*;
 import edu.umd.cs.findbugs.classfile.analysis.AnnotationValue;
 import edu.umd.cs.findbugs.classfile.analysis.EnumValue;
 import edu.umd.cs.findbugs.util.ClassName;
-import id.ac.itb.injection.CleanerType;
-import id.ac.itb.injection.Vulnerability;
-import id.ac.itb.injection.annotation.Cleaner;
-import id.ac.itb.injection.annotation.ReturnContaminated;
-import id.ac.itb.injection.annotation.SensitiveParameter;
+import id.ac.itb.cs.injection.CleanerType;
+import id.ac.itb.cs.injection.Vulnerability;
 import id.ac.itb.cs.injection.database.*;
 import id.ac.itb.cs.injection.util.Util;
 import org.apache.bcel.classfile.JavaClass;
@@ -49,7 +46,7 @@ import java.util.List;
 /**
  * @author Edward Samuel
  */
-public class CheckAnnotation implements Detector {
+public class AnnotationDetector implements Detector {
     
 
     public static final boolean DEBUG = SystemProperties.getBoolean("inj.debug");
@@ -64,7 +61,7 @@ public class CheckAnnotation implements Detector {
 
     private final String RETURN_CONTAMINATED_ANNOTATION = ClassName.toSlashedClassName(ReturnContaminated.class);
     
-    public CheckAnnotation(BugReporter bugReporter) {
+    public AnnotationDetector(BugReporter bugReporter) {
         this.bugReporter = bugReporter;
     }
 
@@ -85,7 +82,7 @@ public class CheckAnnotation implements Detector {
             try {
                 checkFieldAnnotations(xField);
             } catch (RuntimeException e) {
-                bugReporter.logError("CheckAnnotation caught exception while analyzing " + xField, e);
+                bugReporter.logError("AnnotationDetector caught exception while analyzing " + xField, e);
             }
         }
 
@@ -99,20 +96,20 @@ public class CheckAnnotation implements Detector {
             String methodSignature = classContext.getFullyQualifiedMethodName(method);
             try {
                 methodSignature = method.getGenericSignature(); // SignatureConverter.convertMethodSignature(javaClass, method);
-                analyzeMethod(classContext, method);
+                detect(classContext, method);
             } catch (CFGBuilderException e) {
-                bugReporter.logError("CheckAnnotation caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("AnnotationDetector caught exception while analyzing " + methodSignature, e);
             } catch (CheckedAnalysisException e) {
-                bugReporter.logError("CheckAnnotation caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("AnnotationDetector caught exception while analyzing " + methodSignature, e);
             } catch (RuntimeException e) {
-                bugReporter.logError("CheckAnnotation caught exception while analyzing " + methodSignature, e);
+                bugReporter.logError("AnnotationDetector caught exception while analyzing " + methodSignature, e);
             }
         }
     }
 
-    private void analyzeMethod(ClassContext classContext, Method method) throws CheckedAnalysisException {
+    private void detect(ClassContext classContext, Method method) throws CheckedAnalysisException {
         if (DEBUG) {
-            System.out.println("--- CheckAnnotation Analyze: " + classContext.getFullyQualifiedMethodName(method));
+            System.out.println("--- AnnotationDetector Analyze: " + classContext.getFullyQualifiedMethodName(method));
         }
         
         JavaClass callerJavaClass = classContext.getJavaClass();

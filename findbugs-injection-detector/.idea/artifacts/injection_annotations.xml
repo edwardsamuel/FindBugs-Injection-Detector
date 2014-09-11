@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="injection-annotations">
-    <output-path>$PROJECT_DIR$/../out/artifacts/injection_annotations</output-path>
-    <root id="archive" name="injection-annotations.jar">
-      <element id="module-output" name="findbugs-injection-annotation" />
-    </root>
-  </artifact>
-</component>

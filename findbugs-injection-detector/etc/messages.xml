@@ -14,7 +14,7 @@
 	</Plugin>
 	
 	<!-- Detectors -->
-    <Detector class="id.ac.itb.cs.injection.detect.CheckAnnotation">
+    <Detector class="id.ac.itb.cs.injection.detect.AnnotationDetector">
         <Details>
             <![CDATA[
 	            <p>This detector checks for user annotation.</p>
@@ -22,7 +22,7 @@
         </Details>
     </Detector>
 
-    <Detector class="id.ac.itb.cs.injection.detect.FindInjection">
+    <Detector class="id.ac.itb.cs.injection.detect.InjectionDetector">
         <Details>
             <![CDATA[
 	            <p>This detector finds injection sink and check for user contaminated input.</p>

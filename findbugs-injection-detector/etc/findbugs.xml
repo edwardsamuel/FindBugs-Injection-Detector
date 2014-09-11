@@ -8,21 +8,21 @@
 	<!-- Detector ordering constraints -->
 	<OrderingConstraints>
         <SplitPass>
-            <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
+            <Earlier class="id.ac.itb.cs.injection.detect.AnnotationDetector"/>
             <Later class="edu.umd.cs.findbugs.detect.TestDataflowAnalysis"/>
         </SplitPass>
         <SplitPass>
-            <Earlier class="id.ac.itb.cs.injection.detect.CheckAnnotation"/>
-            <Later class="id.ac.itb.cs.injection.detect.FindInjection"/>
+            <Earlier class="id.ac.itb.cs.injection.detect.AnnotationDetector"/>
+            <Later class="id.ac.itb.cs.injection.detect.InjectionDetector"/>
         </SplitPass>
 	</OrderingConstraints>
 	
 	<!-- Detectors -->
-    <Detector class="id.ac.itb.cs.injection.detect.CheckAnnotation"
+    <Detector class="id.ac.itb.cs.injection.detect.AnnotationDetector"
               speed="fast"
               reports=""
               hidden="true" />
-    <Detector class="id.ac.itb.cs.injection.detect.FindInjection"
+    <Detector class="id.ac.itb.cs.injection.detect.InjectionDetector"
               speed="slow"
               reports="" />
 

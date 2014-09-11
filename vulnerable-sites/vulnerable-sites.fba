@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.3" sequence="0" timestamp="1410447376832" analysisTimestamp="1410448198025" release="">
+  <Project projectName="Example Site">
+    <Jar>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\classes</Jar>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\antisamy-1.4.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\batik-css-1.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\batik-ext-1.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\batik-util-1.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\bsh-core-2.0b4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-beanutils-1.8.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-beanutils-core-1.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-codec-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-collections-3.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-configuration-1.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-digester-1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-fileupload-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-httpclient-3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-lang-2.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-lang3-3.3.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\commons-validator-1.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\esapi-2.1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\injection-detector.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\jaxen-1.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\jldap-2009-10-07.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\log4j-1.2.16.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\mysql-connector-java-5.1.32.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\nekohtml-1.9.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\servlet-api-2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\xalan-2.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\xercesimpl-2.8.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\xml-apis-1.3.03.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\xml-apis-ext-1.3.04.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\Git\findbugs-injection-detector\vulnerable-sites\.\target\vulnerable-sites\web-inf\lib\xom-1.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>c:\users\edward samuel\.m2\repository\org\apache\sling\org.apache.sling.scripting.jsp\2.0.18\org.apache.sling.scripting.jsp-2.0.18.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>c:\users\edward samuel\.m2\repository\org\apache\tomcat\servlet-api\6.0.14\servlet-api-6.0.14.jar</AuxClasspathEntry>
+    <SrcDir>D:\Git\findbugs-injection-detector\vulnerable-sites\.\src\main\java</SrcDir>
+  </Project>
+  <BugInstance type="DMI_EMPTY_DB_PASSWORD" priority="2" abbrev="Dm" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="117" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="39" end="39" startBytecode="39" endBytecode="39" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="INJ_ARG_SQL_INJECTION" priority="2" abbrev="INJ" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="117" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="643" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="41" end="41" startBytecode="53" endBytecode="53" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="INJ_RETURN_CONTAMINATED" priority="2" abbrev="INJ" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="117" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="55" end="55" startBytecode="139" endBytecode="139" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="643" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="44" end="44" startBytecode="85" endBytecode="85" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="55" end="55" startBytecode="139" endBytecode="139" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="INJ_SQL_INJECTION" priority="1" abbrev="INJ" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="19" end="24" startBytecode="0" endBytecode="24" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="22" end="22" startBytecode="19" endBytecode="19" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="19" end="19" startBytecode="3" endBytecode="3" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="22" end="22" startBytecode="19" endBytecode="19" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="INJ_XSS" priority="1" abbrev="INJ" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="19" end="24" startBytecode="0" endBytecode="24" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="23" end="23" startBytecode="54" endBytecode="54" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="22" end="22" startBytecode="19" endBytecode="19" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="23" end="23" startBytecode="43" endBytecode="43" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="23" end="23" startBytecode="54" endBytecode="54" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="INJ_XSS" priority="1" abbrev="INJ" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="doPost" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="27" end="32" startBytecode="0" endBytecode="27" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="31" end="31" startBytecode="65" endBytecode="65" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="31" end="31" startBytecode="54" endBytecode="54" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="30" end="30" startBytecode="30" endBytecode="30" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="31" end="31" startBytecode="65" endBytecode="65" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" abbrev="OBL" category="EXPERIMENTAL">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="643" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" sourcefile="Statement.java" sourcepath="java/sql/Statement.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="40" end="40" startBytecode="44" endBytecode="44" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="41" end="41" startBytecode="50" endBytecode="50" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="43" end="43" startBytecode="60" endBytecode="60" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="50" end="50" startBytecode="140" endBytecode="140" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="53" end="53" startBytecode="175" endBytecode="175" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="54" end="54" startBytecode="177" endBytecode="177" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="56" end="56" startBytecode="182" endBytecode="182" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="58" end="58" startBytecode="284" endBytecode="284" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE" priority="1" abbrev="SQL" category="SECURITY">
+    <Class classname="id.ac.itb.cs.vuln.ExampleServlet">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Class>
+    <Method classname="id.ac.itb.cs.vuln.ExampleServlet" name="getEmployee" signature="(Ljava/lang/String;)Lid/ac/itb/cs/vuln/Employee;" isStatic="false">
+      <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="35" end="58" startBytecode="0" endBytecode="117" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+    </Method>
+    <SourceLine classname="id.ac.itb.cs.vuln.ExampleServlet" start="41" end="41" startBytecode="53" endBytecode="53" sourcefile="ExampleServlet.java" sourcepath="id/ac/itb/cs/vuln/ExampleServlet.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Thu, 11 Sep 2014 21:56:16 +0700" total_classes="2" referenced_classes="41" total_bugs="8" total_size="55" num_packages="1" vm_version="20.45-b01" cpu_seconds="41.05" clock_seconds="30.73" peak_mbytes="93.70" alloc_mbytes="1774.25" gc_seconds="0.11" priority_2="4" priority_1="4">
+    <PackageStats package="id.ac.itb.cs.vuln" total_bugs="8" total_types="2" total_size="55" priority_2="4" priority_1="4">
+      <ClassStats class="id.ac.itb.cs.vuln.Employee" sourceFile="Employee.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="id.ac.itb.cs.vuln.ExampleServlet" sourceFile="ExampleServlet.java" interface="false" size="37" bugs="8" priority_2="4" priority_1="4"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="3532" invocations="2" avgMicrosecondsPerInvocation="1766066" maxMicrosecondsPerInvocation="2992533" standardDeviationMircosecondsPerInvocation="1226466"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="1487" invocations="402" avgMicrosecondsPerInvocation="3700" maxMicrosecondsPerInvocation="110292" standardDeviationMircosecondsPerInvocation="9067"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="663" invocations="41" avgMicrosecondsPerInvocation="16177" maxMicrosecondsPerInvocation="90763" standardDeviationMircosecondsPerInvocation="24176"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="627" invocations="97" avgMicrosecondsPerInvocation="6465" maxMicrosecondsPerInvocation="52546" standardDeviationMircosecondsPerInvocation="7997"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="541" invocations="404" avgMicrosecondsPerInvocation="1341" maxMicrosecondsPerInvocation="3315" standardDeviationMircosecondsPerInvocation="636"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="286" invocations="22" avgMicrosecondsPerInvocation="13033" maxMicrosecondsPerInvocation="62695" standardDeviationMircosecondsPerInvocation="19426"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="267" invocations="359" avgMicrosecondsPerInvocation="745" maxMicrosecondsPerInvocation="21458" standardDeviationMircosecondsPerInvocation="1882"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="233" invocations="22" avgMicrosecondsPerInvocation="10594" maxMicrosecondsPerInvocation="43151" standardDeviationMircosecondsPerInvocation="14840"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="198" invocations="20" avgMicrosecondsPerInvocation="9905" maxMicrosecondsPerInvocation="147281" standardDeviationMircosecondsPerInvocation="32509"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="173" invocations="41" avgMicrosecondsPerInvocation="4227" maxMicrosecondsPerInvocation="29200" standardDeviationMircosecondsPerInvocation="7143"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

@@ -19,7 +19,7 @@
 
 package id.ac.itb.cs.injection.database;
 
-import id.ac.itb.injection.Vulnerability;
+import id.ac.itb.cs.injection.Vulnerability;
 
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -42,22 +42,22 @@ public class SensitiveParameterProperty {
 
     private int bits;
 
-    private Map<Integer, EnumSet<Vulnerability>> vulerabilitiesMap;
+    private Map<Integer, EnumSet<Vulnerability>> vulnerabilitiesMap;
 
     /**
      * Constructor. Parameters are all assumed not to be non-null.
      */
     public SensitiveParameterProperty() {
         this.bits = 0;
-        this.vulerabilitiesMap = new HashMap<Integer, EnumSet<Vulnerability>>();
+        this.vulnerabilitiesMap = new HashMap<Integer, EnumSet<Vulnerability>>();
     }
 
     /**
      * Constructor. Parameters are all assumed not to be non-null.
      */
-    public SensitiveParameterProperty(int bits, HashMap<Integer, EnumSet<Vulnerability>> vulerabilitiesMap) {
+    public SensitiveParameterProperty(int bits, HashMap<Integer, EnumSet<Vulnerability>> vulnerabilitiesMap) {
         this.bits = bits;
-        this.vulerabilitiesMap = vulerabilitiesMap;
+        this.vulnerabilitiesMap = vulnerabilitiesMap;
     }
 
     /**
@@ -73,10 +73,10 @@ public class SensitiveParameterProperty {
             throw new IllegalArgumentException("Param must be beetwen 0-31");
         if (hasProperty) {
             bits |= (1 << param);
-            vulerabilitiesMap.put(param, data);
+            vulnerabilitiesMap.put(param, data);
         } else {
             bits &= ~(1 << param);
-            vulerabilitiesMap.remove(param);
+            vulnerabilitiesMap.remove(param);
         }
     }
 
@@ -98,7 +98,7 @@ public class SensitiveParameterProperty {
         if (param < 0 || param > 31)
             throw new IllegalArgumentException("Param must be beetwen 0-31");
         else
-            return vulerabilitiesMap.get(param);
+            return vulnerabilitiesMap.get(param);
     }
 
     /**
@@ -142,7 +142,7 @@ public class SensitiveParameterProperty {
                 
                 sb.append(i);
                 
-                for (Vulnerability vulnerability : vulerabilitiesMap.get(i)) {
+                for (Vulnerability vulnerability : vulnerabilitiesMap.get(i)) {
                     sb.append(",");
                     sb.append(vulnerability.name());
                 }

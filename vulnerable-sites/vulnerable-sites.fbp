@@ -1,0 +1,36 @@
+<Project projectName="Example Site">
+  <Jar>.\target\classes</Jar>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\antisamy-1.4.3.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\batik-css-1.7.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\batik-ext-1.7.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\batik-util-1.7.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\bsh-core-2.0b4.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-beanutils-1.8.3.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-beanutils-core-1.7.0.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-codec-1.2.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-collections-3.2.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-configuration-1.5.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-digester-1.8.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-fileupload-1.2.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-httpclient-3.1.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-lang-2.3.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-lang3-3.3.2.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-logging-1.1.1.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\commons-validator-1.4.0.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\esapi-2.1.0.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\injection-detector.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\jaxen-1.1.6.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\jldap-2009-10-07.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\log4j-1.2.16.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\mysql-connector-java-5.1.32.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\nekohtml-1.9.12.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\servlet-api-2.5.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\xalan-2.7.0.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\xercesimpl-2.8.0.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\xml-apis-1.3.03.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\xml-apis-ext-1.3.04.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>.\target\vulnerable-sites\web-inf\lib\xom-1.2.5.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>c:\users\edward samuel\.m2\repository\org\apache\sling\org.apache.sling.scripting.jsp\2.0.18\org.apache.sling.scripting.jsp-2.0.18.jar</AuxClasspathEntry>
+  <AuxClasspathEntry>c:\users\edward samuel\.m2\repository\org\apache\tomcat\servlet-api\6.0.14\servlet-api-6.0.14.jar</AuxClasspathEntry>
+  <SrcDir>.\src\main\java</SrcDir>
+</Project>
