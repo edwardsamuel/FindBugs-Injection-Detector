@@ -1,4 +1,0 @@
-[submodule "findbugs"]
-	path = findbugs
-	url = https://edwardsp@bitbucket.org/edwardsp/findbugs-core.git
-	branch = release-2.0.3

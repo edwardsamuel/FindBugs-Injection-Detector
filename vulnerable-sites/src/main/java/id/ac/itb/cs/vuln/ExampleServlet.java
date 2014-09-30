@@ -16,17 +16,17 @@ public class ExampleServlet extends HttpServlet {
     private final static MySQLCodec MY_SQL_CODEC = new MySQLCodec(MySQLCodec.Mode.STANDARD);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uname = request.getParameter("uname");
-
         PrintWriter out = response.getWriter();
-        Employee employee = getEmployee(uname);
+
+        String uname = request.getParameter("uname");
+        Employee employee = getEmployee(uname);	
         out.write("Hello, " + employee.getName() + "!");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uname = ESAPI.encoder().encodeForSQL(MY_SQL_CODEC, request.getParameter("uname"));
-
         PrintWriter out = response.getWriter();
+
+        String uname = ESAPI.encoder().encodeForSQL(MY_SQL_CODEC, request.getParameter("uname"));
         Employee employee = getEmployee(uname);
         out.write("Hello, " + employee.getName() + "!");
     }
